@@ -46,7 +46,7 @@
     <section class="first-row">
         <div class="row">
             <div class="col s12">
-                <a class="waves-effect waves-light btn-large" id="current-month">Current month</a>
+                <a class="waves-effect waves-light btn-large" id="current-month" ng-click="getVisitsFromCurrentMonth()" >Current month</a>
                 <a class="waves-effect waves-light btn-large" id="current-week">Current week</a>
             </div>
         </div>
@@ -71,23 +71,7 @@
 
 
     <div class="row">
-        <table id="visits-table-ng" class="highlight">
-            <thead>
-                <tr>
-                    <th data-field="title">Title</th>
-                    <th data-field="date">Date</th>
-                    <th data-field="organiser">Organiser</th>
-                    <th data-field="outcome">Outcome</th>
-                    <th data-field="details">Agenda Items</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr ng-repeat="visit in visits">
-
-                </tr>
-            </tbody>
-        </table>
+        <visits-table></visits-table>
     </div>
 
     <div id="agendaItems-modal" class="modal modal-fixed-footer">
@@ -166,4 +150,4 @@
     </a>
 </div>
 
-<script type="text/javascript" src="../js/visits.js"></script>
+<!-- <script type="text/javascript" src="../js/visits.js"></script> -->

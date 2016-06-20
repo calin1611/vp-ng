@@ -1,0 +1,31 @@
+<table id="agendaItems-table" class="highlight">
+    <thead>
+        <tr>
+            <th data-field="title">TitleZZZ</th>
+            <th data-field="date">Date</th>
+            <th data-field="location">Location</th>
+            <th data-field="outcome">Outcome</th>
+            <th data-field="type">Type</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr ng-repeat="visit in visits">
+            <td>
+                {{visit.Title}}
+            </td>
+            <td>
+                {{visit.Date}}
+            </td>
+            <td>
+                {{visit.Location}}
+            </td>
+            <td>
+                {{visit.Outcome}}
+            </td>
+            <td>
+                {{visit.Type}}
+            </td>
+        </tr>
+    </tbody>
+</table>

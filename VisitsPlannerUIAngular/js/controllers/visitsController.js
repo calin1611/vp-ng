@@ -1,6 +1,31 @@
-app.controller('visitsController', ['$scope', function ($scope) {
+app.controller('visitsController', ['$scope', '$resource', '$http', function ($scope, $resource, $http) {
+    var baseUrl = "http://localhost:59557/api/"
+
     $scope.visitsFromCurrentMonth = {};
     $scope.visitsFromCurrentWeek = {};
+
+    var onSuccess = function (response) {
+        console.log("angular ajax success: ");
+        $scope.x = "Worked! :)";
+        $scope.visits = response.data;
+        console.log($scope.visits);
+    }
+
+    var onError = function (response) {
+        console.log("angular ajax error: ");
+        console.log(response);
+        $scope.error = "Error getting data from server";
+    }
+
+    $scope.getVisitsFromCurrentMonth = function () {
+        $http({
+            method: 'GET',
+            url: baseUrl + 'Visits/CurrentMonth'
+        }).then(onSuccess, onError);
+    };
+
+
+//---
 
     (function() {
         var baseUrl = "http://localhost:59557/api/"

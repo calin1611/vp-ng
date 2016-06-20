@@ -13,3 +13,11 @@ app.directive('loginModal', function () {
         replace: true
     };
 });
+
+app.directive('visitsTable', function () {
+    return {
+        restrict: 'E',
+        templateUrl: '../directives/visits-table.html',
+        replace: true
+    };
+});
