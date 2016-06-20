@@ -1,0 +1,6 @@
+C:\Project\Calin\Visits Planner\VisitsPlannerUIAngular\bin\VisitsPlannerUIAngular.dll.config
+C:\Project\Calin\Visits Planner\VisitsPlannerUIAngular\bin\VisitsPlannerUIAngular.dll
+C:\Project\Calin\Visits Planner\VisitsPlannerUIAngular\bin\VisitsPlannerUIAngular.pdb
+C:\Project\Calin\Visits Planner\VisitsPlannerUIAngular\obj\Debug\VisitsPlannerUIAngular.csprojResolveAssemblyReference.cache
+C:\Project\Calin\Visits Planner\VisitsPlannerUIAngular\obj\Debug\VisitsPlannerUIAngular.dll
+C:\Project\Calin\Visits Planner\VisitsPlannerUIAngular\obj\Debug\VisitsPlannerUIAngular.pdb

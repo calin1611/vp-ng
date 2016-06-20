@@ -1,0 +1,67 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication", "ConsoleApplication1\ConsoleApplication.csproj", "{E1C7C94E-C0C7-4477-81EB-30F85BE936CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitsPlannerModel", "VisitsPlannerModel\VisitsPlannerModel.csproj", "{2986E94A-8682-4344-B5E2-35DDA0455702}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{5535C773-2FBA-43E3-9289-6B0047F0D167}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitsPlannerUI", "VisitsPlannerUI\VisitsPlannerUI.csproj", "{7305447F-5B83-4C01-B0F6-A7FEE241BAE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitsPlannerUIAngular", "VisitsPlannerUIAngular\VisitsPlannerUIAngular.csproj", "{81C3CC1C-F0D1-4E9D-8D7A-3927C303FD6C}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://srv-tfs.accesa.eu:8080/tfs/accesa
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ConsoleApplication1\\ConsoleApplication.csproj
+		SccProjectName1 = ConsoleApplication1
+		SccLocalPath1 = ConsoleApplication1
+		SccProjectUniqueName2 = VisitsPlannerModel\\VisitsPlannerModel.csproj
+		SccProjectName2 = VisitsPlannerModel
+		SccLocalPath2 = VisitsPlannerModel
+		SccProjectUniqueName3 = WebAPI\\WebAPI.csproj
+		SccProjectName3 = WebAPI
+		SccLocalPath3 = WebAPI
+		SccProjectUniqueName4 = VisitsPlannerUI\\VisitsPlannerUI.csproj
+		SccProjectName4 = VisitsPlannerUI
+		SccLocalPath4 = VisitsPlannerUI
+		SccProjectUniqueName5 = VisitsPlannerUIAngular\\VisitsPlannerUIAngular.csproj
+		SccProjectName5 = VisitsPlannerUIAngular
+		SccLocalPath5 = VisitsPlannerUIAngular
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E1C7C94E-C0C7-4477-81EB-30F85BE936CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1C7C94E-C0C7-4477-81EB-30F85BE936CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1C7C94E-C0C7-4477-81EB-30F85BE936CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1C7C94E-C0C7-4477-81EB-30F85BE936CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2986E94A-8682-4344-B5E2-35DDA0455702}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2986E94A-8682-4344-B5E2-35DDA0455702}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2986E94A-8682-4344-B5E2-35DDA0455702}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2986E94A-8682-4344-B5E2-35DDA0455702}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5535C773-2FBA-43E3-9289-6B0047F0D167}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5535C773-2FBA-43E3-9289-6B0047F0D167}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5535C773-2FBA-43E3-9289-6B0047F0D167}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5535C773-2FBA-43E3-9289-6B0047F0D167}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7305447F-5B83-4C01-B0F6-A7FEE241BAE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7305447F-5B83-4C01-B0F6-A7FEE241BAE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7305447F-5B83-4C01-B0F6-A7FEE241BAE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7305447F-5B83-4C01-B0F6-A7FEE241BAE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81C3CC1C-F0D1-4E9D-8D7A-3927C303FD6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81C3CC1C-F0D1-4E9D-8D7A-3927C303FD6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81C3CC1C-F0D1-4E9D-8D7A-3927C303FD6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81C3CC1C-F0D1-4E9D-8D7A-3927C303FD6C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

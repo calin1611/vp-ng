@@ -1,0 +1,14 @@
+C:\Project\Calin\Visits Planner\VisitsPlannerModel\bin\Debug\VisitsPlannerModel.dll.config
+C:\Project\Calin\Visits Planner\VisitsPlannerModel\bin\Debug\VisitsPlannerModel.dll
+C:\Project\Calin\Visits Planner\VisitsPlannerModel\bin\Debug\VisitsPlannerModel.pdb
+C:\Project\Calin\Visits Planner\VisitsPlannerModel\bin\Debug\AutoMapper.dll
+C:\Project\Calin\Visits Planner\VisitsPlannerModel\bin\Debug\EntityFramework.dll
+C:\Project\Calin\Visits Planner\VisitsPlannerModel\bin\Debug\EntityFramework.SqlServer.dll
+C:\Project\Calin\Visits Planner\VisitsPlannerModel\bin\Debug\log4net.dll
+C:\Project\Calin\Visits Planner\VisitsPlannerModel\bin\Debug\AutoMapper.xml
+C:\Project\Calin\Visits Planner\VisitsPlannerModel\bin\Debug\EntityFramework.xml
+C:\Project\Calin\Visits Planner\VisitsPlannerModel\bin\Debug\EntityFramework.SqlServer.xml
+C:\Project\Calin\Visits Planner\VisitsPlannerModel\bin\Debug\log4net.xml
+C:\Project\Calin\Visits Planner\VisitsPlannerModel\obj\Debug\VisitsPlannerModel.csprojResolveAssemblyReference.cache
+C:\Project\Calin\Visits Planner\VisitsPlannerModel\obj\Debug\VisitsPlannerModel.dll
+C:\Project\Calin\Visits Planner\VisitsPlannerModel\obj\Debug\VisitsPlannerModel.pdb

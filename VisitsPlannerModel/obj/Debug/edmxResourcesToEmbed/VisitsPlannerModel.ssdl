@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VisitsPlannerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AgendaItems">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="VisitId" Type="int" Nullable="false" />
+    <Property Name="LocationId" Type="int" Nullable="false" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="VisitTypeId" Type="int" Nullable="false" />
+    <Property Name="Outcome" Type="nvarchar" MaxLength="500" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="AgendaItemsNotifications">
+    <Key>
+      <PropertyRef Name="AgendaItemId" />
+      <PropertyRef Name="NotificationId" />
+    </Key>
+    <Property Name="AgendaItemId" Type="int" Nullable="false" />
+    <Property Name="NotificationId" Type="int" Nullable="false" />
+    <Property Name="TimeOfNotification" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="Role" Type="int" />
+  </EntityType>
+  <EntityType Name="EmployeesAgendaItems">
+    <Key>
+      <PropertyRef Name="EmployeeId" />
+      <PropertyRef Name="AgendaItemId" />
+    </Key>
+    <Property Name="EmployeeId" Type="int" Nullable="false" />
+    <Property Name="AgendaItemId" Type="int" Nullable="false" />
+    <Property Name="IsResponsable" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Locations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="NotificationPreferences">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="int" />
+    <Property Name="Time" Type="int" />
+    <Property Name="EmployeeId" Type="int" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Visits">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="OrganiserId" Type="int" />
+    <Property Name="Outcome" Type="nvarchar" MaxLength="500" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="VisitsCustomers">
+    <Key>
+      <PropertyRef Name="VisitId" />
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="VisitId" Type="int" Nullable="false" />
+    <Property Name="CustomerId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VisitTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_AgendaItems_Locations">
+    <End Role="Locations" Type="Self.Locations" Multiplicity="1" />
+    <End Role="AgendaItems" Type="Self.AgendaItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Locations">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AgendaItems">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AgendaItems_Visits">
+    <End Role="Visits" Type="Self.Visits" Multiplicity="1" />
+    <End Role="AgendaItems" Type="Self.AgendaItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Visits">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AgendaItems">
+        <PropertyRef Name="VisitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AgendaItems_VisitTypes">
+    <End Role="VisitTypes" Type="Self.VisitTypes" Multiplicity="1" />
+    <End Role="AgendaItems" Type="Self.AgendaItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VisitTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AgendaItems">
+        <PropertyRef Name="VisitTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AgendaItemsNotifications_AgendaItems">
+    <End Role="AgendaItems" Type="Self.AgendaItems" Multiplicity="1" />
+    <End Role="AgendaItemsNotifications" Type="Self.AgendaItemsNotifications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AgendaItems">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AgendaItemsNotifications">
+        <PropertyRef Name="AgendaItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AgendaItemsNotifications_NotificationPreferences">
+    <End Role="NotificationPreferences" Type="Self.NotificationPreferences" Multiplicity="1" />
+    <End Role="AgendaItemsNotifications" Type="Self.AgendaItemsNotifications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NotificationPreferences">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AgendaItemsNotifications">
+        <PropertyRef Name="NotificationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JTVisits_Customers_Customers">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+    <End Role="VisitsCustomers" Type="Self.VisitsCustomers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="VisitsCustomers">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JTVisits_Customers_Visits">
+    <End Role="Visits" Type="Self.Visits" Multiplicity="1" />
+    <End Role="VisitsCustomers" Type="Self.VisitsCustomers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Visits">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="VisitsCustomers">
+        <PropertyRef Name="VisitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NotificationPreferences_Employees">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="NotificationPreferences" Type="Self.NotificationPreferences" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NotificationPreferences">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sdasdsad_AgendaItems">
+    <End Role="AgendaItems" Type="Self.AgendaItems" Multiplicity="1" />
+    <End Role="EmployeesAgendaItems" Type="Self.EmployeesAgendaItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AgendaItems">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmployeesAgendaItems">
+        <PropertyRef Name="AgendaItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sdasdsad_Employees">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="EmployeesAgendaItems" Type="Self.EmployeesAgendaItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmployeesAgendaItems">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Visits_Employees">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="Visits" Type="Self.Visits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Visits">
+        <PropertyRef Name="OrganiserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="VisitsPlannerModelStoreContainer">
+    <EntitySet Name="AgendaItems" EntityType="Self.AgendaItems" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AgendaItemsNotifications" EntityType="Self.AgendaItemsNotifications" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeesAgendaItems" EntityType="Self.EmployeesAgendaItems" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NotificationPreferences" EntityType="Self.NotificationPreferences" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Visits" EntityType="Self.Visits" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VisitsCustomers" EntityType="Self.VisitsCustomers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VisitTypes" EntityType="Self.VisitTypes" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AgendaItems_Locations" Association="Self.FK_AgendaItems_Locations">
+      <End Role="Locations" EntitySet="Locations" />
+      <End Role="AgendaItems" EntitySet="AgendaItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AgendaItems_Visits" Association="Self.FK_AgendaItems_Visits">
+      <End Role="Visits" EntitySet="Visits" />
+      <End Role="AgendaItems" EntitySet="AgendaItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AgendaItems_VisitTypes" Association="Self.FK_AgendaItems_VisitTypes">
+      <End Role="VisitTypes" EntitySet="VisitTypes" />
+      <End Role="AgendaItems" EntitySet="AgendaItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AgendaItemsNotifications_AgendaItems" Association="Self.FK_AgendaItemsNotifications_AgendaItems">
+      <End Role="AgendaItems" EntitySet="AgendaItems" />
+      <End Role="AgendaItemsNotifications" EntitySet="AgendaItemsNotifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AgendaItemsNotifications_NotificationPreferences" Association="Self.FK_AgendaItemsNotifications_NotificationPreferences">
+      <End Role="NotificationPreferences" EntitySet="NotificationPreferences" />
+      <End Role="AgendaItemsNotifications" EntitySet="AgendaItemsNotifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JTVisits_Customers_Customers" Association="Self.FK_JTVisits_Customers_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="VisitsCustomers" EntitySet="VisitsCustomers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JTVisits_Customers_Visits" Association="Self.FK_JTVisits_Customers_Visits">
+      <End Role="Visits" EntitySet="Visits" />
+      <End Role="VisitsCustomers" EntitySet="VisitsCustomers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NotificationPreferences_Employees" Association="Self.FK_NotificationPreferences_Employees">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="NotificationPreferences" EntitySet="NotificationPreferences" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sdasdsad_AgendaItems" Association="Self.FK_sdasdsad_AgendaItems">
+      <End Role="AgendaItems" EntitySet="AgendaItems" />
+      <End Role="EmployeesAgendaItems" EntitySet="EmployeesAgendaItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sdasdsad_Employees" Association="Self.FK_sdasdsad_Employees">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="EmployeesAgendaItems" EntitySet="EmployeesAgendaItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Visits_Employees" Association="Self.FK_Visits_Employees">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Visits" EntitySet="Visits" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

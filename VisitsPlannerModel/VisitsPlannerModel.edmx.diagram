@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="590ecc1cf77e4c25928247fb07678b3d" Name="Diagram1">
+        <EntityTypeShape EntityType="VisitsPlannerModel.AgendaItem" Width="1.5" PointX="8.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisitsPlannerModel.AgendaItemsNotification" Width="1.5" PointX="5.25" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisitsPlannerModel.Customer" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisitsPlannerModel.Employee" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisitsPlannerModel.EmployeesAgendaItem" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisitsPlannerModel.Location" Width="1.5" PointX="6" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisitsPlannerModel.NotificationPreference" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisitsPlannerModel.sysdiagram" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisitsPlannerModel.Visit" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisitsPlannerModel.VisitType" Width="1.5" PointX="6" PointY="12.25" IsExpanded="true" />
+        <AssociationConnector Association="VisitsPlannerModel.FK_AgendaItems_Locations" ManuallyRouted="false" />
+        <AssociationConnector Association="VisitsPlannerModel.FK_AgendaItems_Visits" ManuallyRouted="false" />
+        <AssociationConnector Association="VisitsPlannerModel.FK_AgendaItems_VisitTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="VisitsPlannerModel.FK_AgendaItemsNotifications_AgendaItems" ManuallyRouted="false" />
+        <AssociationConnector Association="VisitsPlannerModel.FK_sdasdsad_AgendaItems" ManuallyRouted="false" />
+        <AssociationConnector Association="VisitsPlannerModel.FK_AgendaItemsNotifications_NotificationPreferences" ManuallyRouted="false" />
+        <AssociationConnector Association="VisitsPlannerModel.FK_NotificationPreferences_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="VisitsPlannerModel.FK_sdasdsad_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="VisitsPlannerModel.FK_Visits_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="VisitsPlannerModel.VisitsCustomers" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
