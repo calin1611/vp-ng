@@ -1,34 +1,87 @@
 app.controller('visitsController', ['$scope', '$resource', '$http', function ($scope, $resource, $http) {
-    var baseUrl = "http://localhost:59557/api/"
+    var baseUrl = "http://localhost:59557/api/";
+
+    $scope.visitsLoaded = false;
 
     $scope.visitsFromCurrentMonth = {};
     $scope.visitsFromCurrentWeek = {};
 
-    var onSuccess = function (response) {
-        console.log("angular ajax success: ");
-        $scope.x = "Worked! :)";
+    var onVisits = function (response) {
+        $scope.visitsLoaded = true;
         $scope.visits = response.data;
-        console.log($scope.visits);
-    }
+        // console.log(response);
+    };
+
+    var onAgendaItems = function (response) {
+        $scope.agendaItems =  response.data;
+
+        $scope.noAgendaItems = true;
+        if ($scope.agendaItems.length > 0) {
+            $scope.noAgendaItems = false;
+        }
+
+        $('#agendaItems-modal').openModal();
+    };
 
     var onError = function (response) {
-        console.log("angular ajax error: ");
+        console.error("Angular XHR error: ");
         console.log(response);
-        $scope.error = "Error getting data from server";
-    }
-
-    $scope.getVisitsFromCurrentMonth = function () {
-        $http({
-            method: 'GET',
-            url: baseUrl + 'Visits/CurrentMonth'
-        }).then(onSuccess, onError);
+        Materialize.toast('There was a problem when connecting to the server.', 20000);
     };
 
 
-//---
+    var getVisits = function (unitOfTime) { // unitOfTime: 'week' or 'month'
+    $http({
+        method: 'GET',
+        url: baseUrl + 'Visits/Current' + unitOfTime
+    })
+    .then(onVisits, onError)
+    .finally(function() {
+        console.log("finally finished gists");
+    });
+};
+
+    $scope.getVisitsFromCurrentMonth = function () {
+        getVisits('month');
+    };
+    $scope.getVisitsFromCurrentWeek = function () {
+        getVisits('week');
+    };
+
+
+    var getAgendaItemsForVisit =  function (visitId) {
+        return $http({
+            method: 'GET',
+            url: baseUrl + 'AgendaItems/GetAgendaItemsForVisit/' + visitId
+        })
+        .then(onAgendaItems, onError)
+        .finally(function() {
+            // console.log("finally finished gists");
+        });
+    };
+
+    $scope.openAgendaItemsModal = function (visit) {
+        getAgendaItemsForVisit(visit.Id);
+        $scope.visitTitle = visit.Title;
+    };
+
+
+    $scope.showTooltip = function () {
+        $('.tooltipped').tooltip({delay: 50});
+        console.log("enter");
+    };
+
+    $scope.hideTooltip = function () {
+        $('.tooltipped').tooltip('remove');
+        console.log("left");
+    };
+
+
+
+//------------------------------------------------OLD------------------------------------------------
 
     (function() {
-        var baseUrl = "http://localhost:59557/api/"
+        var baseUrl = "http://localhost:59557/api/";
 
         function getVisitsFromCurrentMonth() {
             $('#spinner').show();
@@ -78,14 +131,14 @@ app.controller('visitsController', ['$scope', '$resource', '$http', function ($s
             var tableBody = getTableBody('visits-table');
 
             for (var i = 0; i < data.length; i++) {
-                var dateTime = getDateTime(data[i].Date)
+                var dateTime = getDateTime(data[i].Date);
                 tableBody.append(
                     '<tr data-visitId="' + data[i].Id + '">' +
                         '<td>' +
                             data[i].Title +
                         '</td>' +
-                        '<td>'
-                            + printDate(dateTime.date) +"  " + printTime(dateTime.time) +
+                        '<td>' +
+                            printDate(dateTime.date) + "  " + printTime(dateTime.time) +
                         '</td>' +
                         '<td>' +
                             '<a href="mailto:' + data[i].EmployeeData.Email + '">' + data[i].EmployeeData.FirstName + " " + data[i].EmployeeData.LastName + '</a>' +
@@ -194,7 +247,7 @@ app.controller('visitsController', ['$scope', '$resource', '$http', function ($s
                     'Title':title,
                     'Date': date,
                     'OrganiserId': organiserId
-                }
+                };
                 dataToSendStringified = JSON.stringify(dataToSend);
                 $.ajax({
                     url: baseUrl + 'visits/add',
@@ -210,7 +263,7 @@ app.controller('visitsController', ['$scope', '$resource', '$http', function ($s
                         console.log('Pe done!');
                     }
                 });
-            })
+            });
             $('.datepicker').pickadate({
                 selectMonths: true, // Creates a dropdown to control month
                 selectYears: 15 // Creates a dropdown of 15 years to control year

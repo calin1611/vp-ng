@@ -61,6 +61,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="directives\visits-table.html" />
     <Content Include="font\material-design-icons\Material-Design-Icons.eot" />
     <Content Include="font\material-design-icons\Material-Design-Icons.ttf" />
     <Content Include="font\material-design-icons\Material-Design-Icons.woff" />
@@ -120,10 +121,15 @@
     <Content Include="index.html" />
     <Content Include="js\ajaxConfig.js" />
     <Content Include="js\app.js" />
+    <Content Include="js\controllers\homeController.js" />
+    <Content Include="js\controllers\visitsController.js" />
+    <Content Include="js\directives.js" />
     <Content Include="js\login.js" />
     <Content Include="js\materialize.js" />
     <Content Include="js\visits.js" />
     <Content Include="MyVisits.html" />
+    <Content Include="pages\home.html" />
+    <Content Include="pages\visits.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

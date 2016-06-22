@@ -46,8 +46,8 @@
     <section class="first-row">
         <div class="row">
             <div class="col s12">
-                <a class="waves-effect waves-light btn-large" id="current-month" ng-click="getVisitsFromCurrentMonth()" >Current month</a>
-                <a class="waves-effect waves-light btn-large" id="current-week">Current week</a>
+                <a class="waves-effect waves-light btn-large" id="current-month" ng-click="getVisitsFromCurrentMonth()">Current month</a>
+                <a class="waves-effect waves-light btn-large" id="current-week" ng-click="getVisitsFromCurrentWeek()">Current week</a>
             </div>
         </div>
     </section>
@@ -71,31 +71,23 @@
 
 
     <div class="row">
-        <visits-table></visits-table>
+        <visits-table ng-if="visitsLoaded"></visits-table>
     </div>
 
     <div id="agendaItems-modal" class="modal modal-fixed-footer">
         <div class="modal-content">
-            <h4>Agenda Items for <span id="visit-title"></span></h4>
+            <h4>Agenda Items for {{visitTitle}}<span id="visit-title"></span></h4>
             <div>
                 <form method="get" class="col s12">
 
                     <div class="row">
                         <div class="container">
-                            <table id="agendaItems-table" class="highlight">
-                                <thead>
-                                    <tr>
-                                        <th data-field="title">Title</th>
-                                        <th data-field="date">Date</th>
-                                        <th data-field="location">Location</th>
-                                        <th data-field="outcome">Outcome</th>
-                                        <th data-field="type">Type</th>
-                                    </tr>
-                                </thead>
 
-                                <tbody>
-                                </tbody>
-                            </table>
+                            <agenda-items-table ng-hide="noAgendaItems"></agenda-items-table>
+
+                            <div ng-show="noAgendaItems">
+                                <div class="card-panel red lighten-1">There are no agenda items for this visit</div>
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -150,4 +142,14 @@
     </a>
 </div>
 
-<!-- <script type="text/javascript" src="../js/visits.js"></script> -->
+
+<!-- Agenda Items Modal Structure -->
+<!-- <div id="agendaItemsModal" class="modal">
+    <div class="modal-content">
+        <h4>{{visitTitle}}</h4>
+        <p>A bunch of text </p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+</div> -->
