@@ -1,6 +1,6 @@
 var app = angular.module('visitsPlanner', ['ngRoute', 'ngResource']);
 
-app.config(function ($routeProvider, $httpProvider, $provide) {
+app.config(function ($routeProvider, $httpProvider) {
     $routeProvider
         .when('/', {
             templateUrl: 'pages/home.html',
@@ -11,19 +11,8 @@ app.config(function ($routeProvider, $httpProvider, $provide) {
             controller: 'visitsController'
         });
 
-    $httpProvider.defaults.headers.common['Accept'] = 'application/json, text/plain, */*';
+    $httpProvider.defaults.headers.common.Accept = 'application/json, text/plain, */*';
     $httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
-    $httpProvider.defaults.headers.common['Authorization'] = localStorage.getItem('encodedCredentials');
+    $httpProvider.defaults.headers.common.Authorization = localStorage.getItem('encodedCredentials');
 
-    //Posibil sa nu mearga fara asta
-    // $provide.decorator('$templateRequest', ['$delegate', function($delegate) {
-    //   var fn = $delegate;
-    //   $delegate = function(tpl) {
-    //     for (var key in fn) {
-    //       $delegate[key] = fn[key];
-    //     }
-    //     return fn.apply(this, [tpl, true]);
-    //   };
-    //   return $delegate;
-    // }]);
 });

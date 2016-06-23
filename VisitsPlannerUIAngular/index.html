@@ -16,21 +16,22 @@
 </head>
 <body ng-app="visitsPlanner">
 
-    <nav>
+    <nav ng-controller="loginController">
         <div class="nav-wrapper container">
             <a href="#/" class="brand-logo">Home</a>
             <ul class="right hide-on-med-and-down">
-                <li id="logout-btn"><a href="#/">Log Out</a></li>
-
-                <li id="login-btn">
-                    <button class="btn modal-trigger waves-effect waves-light" data-target="loginModal">Login</button>
+                <li ng-hide="logged">
+                    <button ng-click="triggerModal()"  class="btn modal-trigger waves-effect waves-light" data-target="loginModal">login</button>
                 </li>
+
+                <li ng-show="logged" ng-click="logout()" ><a href="#/">Logout, {{user}}</a></li>
+
             </ul>
         </div>
     </nav>
 
     <!-- Login Modal -->
-    <div id="loginModal" class="modal modal-fixed-footer">
+    <div  ng-controller="loginController" id="loginModal" class="modal modal-fixed-footer">
         <div class="modal-content">
             <h4>Login</h4>
             <div id="login-div">
@@ -44,12 +45,12 @@
 
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="email" type="text" class="validate">
                             <label for="email">Email</label>
+                            <input ng-model="email" id="email" type="text" class="validate">
                         </div>
                         <div class="input-field col s12">
-                            <input id="password" type="password" class="validate">
                             <label for="password">Last Name</label>
+                            <input ng-model="password" id="password" type="password" class="validate">
                         </div>
 
                     </div>
@@ -57,7 +58,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button id="login" class="btn waves-effect waves-light" type="button" name="action">Submit
+            <button ng-click="login()" class="btn waves-effect waves-light" type="button" name="action">Submit
                 <i class="material-icons right">send</i>
             </button>
         </div>
@@ -84,8 +85,10 @@
 
     <script type="text/javascript" src="js/controllers/homeController.js"></script>
     <script type="text/javascript" src="js/controllers/visitsController.js"></script>
+    <script type="text/javascript" src="js/controllers/loginController.js"></script>
 
     <script type="text/javascript" src="js/directives.js"></script>
+    <script type="text/javascript" src="js/services/loginService.js"></script>
 
     <script type="text/javascript" src="js/ajaxConfig.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
