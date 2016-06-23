@@ -15,11 +15,9 @@ app.controller('loginController', ['$scope', 'loginService', '$window', '$rootSc
 
     $scope.$on('loginService-logged', function (event, data) {
         if (data.logged === true) {
-            // alert('logged IN');
             $scope.logged = true;
             $scope.user = data.user;
         } else {
-            // alert('logged out');
             $scope.logged = false;
             $scope.user = '';
         }

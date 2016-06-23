@@ -1,4 +1,4 @@
-app.controller('visitsController', ['$scope', '$resource', '$http', function ($scope, $resource, $http) {
+app.controller('visitsController', ['$scope', '$resource', '$http', 'dateService', '$sanitize', function ($scope, $resource, $http, dateService, $sanitize) {
     var baseUrl = "http://localhost:59557/api/";
 
     $scope.visitsLoaded = false;
@@ -6,10 +6,19 @@ app.controller('visitsController', ['$scope', '$resource', '$http', function ($s
     $scope.visitsFromCurrentMonth = {};
     $scope.visitsFromCurrentWeek = {};
 
+    $scope.date = function (someDate) {
+        return dateService.getDateTime(someDate);
+    };
+
+    $scope.date2 = function (dateTime) {
+        return dateService.getDateTime2(dateTime);
+    }
     var onVisits = function (response) {
         $scope.visitsLoaded = true;
         $scope.visits = response.data;
-        // console.log(response);
+        // dateService.getDateTime(response)
+
+        console.log(response);
     };
 
     var onAgendaItems = function (response) {

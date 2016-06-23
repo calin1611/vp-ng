@@ -28,3 +28,7 @@ tr {
 .pointer {
     cursor:pointer;
 }
+
+.visit-title{
+    font-weight: bold;
+}

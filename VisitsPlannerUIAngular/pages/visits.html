@@ -76,21 +76,17 @@
 
     <div id="agendaItems-modal" class="modal modal-fixed-footer">
         <div class="modal-content">
-            <h4>Agenda Items for {{visitTitle}}<span id="visit-title"></span></h4>
-            <div>
-                <form method="get" class="col s12">
+            <h4>Agenda Items for <span class="visit-title">{{visitTitle}}</span></h4>
+            <div class="row">
+                <div class="container">
 
-                    <div class="row">
-                        <div class="container">
+                    <agenda-items-table ng-hide="noAgendaItems"></agenda-items-table>
 
-                            <agenda-items-table ng-hide="noAgendaItems"></agenda-items-table>
-
-                            <div ng-show="noAgendaItems">
-                                <div class="card-panel red lighten-1">There are no agenda items for this visit</div>
-                            </div>
-                        </div>
+                    <div ng-show="noAgendaItems">
+                        <div class="card-panel red lighten-1">There are no agenda items for this visit</div>
                     </div>
-                </form>
+
+                </div>
             </div>
         </div>
         <div class="modal-footer">

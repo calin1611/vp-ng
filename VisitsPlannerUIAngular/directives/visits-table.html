@@ -14,8 +14,9 @@
             <td>
                 {{visit.Title}}
             </td>
-            <td>
-                {{visit.Date}}
+            <td> <!--ng-bind-html="date(visit.Date)">-->
+                <!-- {{date(visit.Date)}} -->
+                {{date2(visit.Date)}}
             </td>
             <td>
                 <a href="mailto:{{visit.EmployeeData.Email}}">{{visit.EmployeeData.FirstName + ' ' + visit.EmployeeData.LastName}}</a>

@@ -1,4 +1,4 @@
-var app = angular.module('visitsPlanner', ['ngRoute', 'ngResource']);
+var app = angular.module('visitsPlanner', ['ngRoute', 'ngResource', 'ngSanitize']);
 
 app.config(function ($routeProvider, $httpProvider) {
     $routeProvider
