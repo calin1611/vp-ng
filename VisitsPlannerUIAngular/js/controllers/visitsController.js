@@ -1,24 +1,17 @@
-app.controller('visitsController', ['$scope', '$resource', '$http', 'dateService', '$sanitize', function ($scope, $resource, $http, dateService, $sanitize) {
+app.controller('visitsController', ['$scope', '$http', 'dateService', '$sanitize', '$rootScope', function ($scope, $http, dateService, $sanitize, $rootScope) {
     var baseUrl = "http://localhost:59557/api/";
 
     $scope.visitsLoaded = false;
+    $scope.$on('ajaxLoading', function (event, data) {
+        $scope.ajaxLoading = data.loading;
+    });
 
     $scope.visitsFromCurrentMonth = {};
     $scope.visitsFromCurrentWeek = {};
 
-    $scope.date = function (someDate) {
-        return dateService.getDateTime(someDate);
-    };
-
-    $scope.date2 = function (dateTime) {
-        return dateService.getDateTime2(dateTime);
-    }
     var onVisits = function (response) {
         $scope.visitsLoaded = true;
         $scope.visits = response.data;
-        // dateService.getDateTime(response)
-
-        console.log(response);
     };
 
     var onAgendaItems = function (response) {
@@ -40,15 +33,21 @@ app.controller('visitsController', ['$scope', '$resource', '$http', 'dateService
 
 
     var getVisits = function (unitOfTime) { // unitOfTime: 'week' or 'month'
-    $http({
-        method: 'GET',
-        url: baseUrl + 'Visits/Current' + unitOfTime
-    })
-    .then(onVisits, onError)
-    .finally(function() {
-        console.log("finally finished gists");
-    });
-};
+        $rootScope.$broadcast('ajaxLoading', {
+            loading: true
+        });
+
+        $http({
+            method: 'GET',
+            url: baseUrl + 'Visits/Current' + unitOfTime
+        })
+        .then(onVisits, onError)
+        .finally(function() {
+            $rootScope.$broadcast('ajaxLoading', {
+                loading: false
+            });
+        });
+    };
 
     $scope.getVisitsFromCurrentMonth = function () {
         getVisits('month');
@@ -58,6 +57,11 @@ app.controller('visitsController', ['$scope', '$resource', '$http', 'dateService
     };
 
 
+    $scope.openAgendaItemsModal = function (visit) {
+        getAgendaItemsForVisit(visit.Id);
+        $scope.visitTitle = visit.Title;
+    };
+
     var getAgendaItemsForVisit =  function (visitId) {
         return $http({
             method: 'GET',
@@ -65,25 +69,27 @@ app.controller('visitsController', ['$scope', '$resource', '$http', 'dateService
         })
         .then(onAgendaItems, onError)
         .finally(function() {
-            // console.log("finally finished gists");
         });
     };
 
-    $scope.openAgendaItemsModal = function (visit) {
-        getAgendaItemsForVisit(visit.Id);
-        $scope.visitTitle = visit.Title;
+
+    $scope.date = function (someDate) {
+        return dateService.getDateTime(someDate);
     };
 
-
-    $scope.showTooltip = function () {
-        $('.tooltipped').tooltip({delay: 50});
-        console.log("enter");
-    };
-
-    $scope.hideTooltip = function () {
-        $('.tooltipped').tooltip('remove');
-        console.log("left");
-    };
+    $scope.date2 = function (dateTime) {
+        return dateService.getDateTime2(dateTime);
+    }
+    
+    // $scope.showTooltip = function () {
+    //     $('.tooltipped').tooltip({delay: 50});
+    //     console.log("enter");
+    // };
+    //
+    // $scope.hideTooltip = function () {
+    //     $('.tooltipped').tooltip('remove');
+    //     console.log("left");
+    // };
 
 
 
@@ -102,7 +108,7 @@ app.controller('visitsController', ['$scope', '$resource', '$http', 'dateService
                     bindData(data);
                 },
                 error: function () {
-                    alert("aww...");
+                    // alert("aww...");
                 },
                 complete: function () {
                     $('#spinner').hide();
@@ -120,7 +126,7 @@ app.controller('visitsController', ['$scope', '$resource', '$http', 'dateService
                     bindData(data);
                 },
                 error: function () {
-                    alert("aww...");
+                    // alert("aww...");
                 },
                 complete: function () {
                     $('#spinner').hide();

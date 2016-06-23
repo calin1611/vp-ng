@@ -26,9 +26,6 @@
                 <i ng-show="visit.Outcome === null" class="material-icons tooltipped pointer" data-position="right" data-delay="50" data-tooltip="Insufficient permissions">lock_outline</i>
                 <i ng-show="visit.Outcome !== null" class="material-icons tooltipped pointer" data-position="right" data-delay="50" data-tooltip="{{visit.Outcome}}">subject</i>
             </td>
- <!-- ng-mouseleave="hideTooltip()"  ng-mouseenter="showTooltip()"  -->
- <!-- ng-mouseleave="hideTooltip()"  ng-mouseenter="showTooltip()"  -->
-
             <td>
                 <i ng-click="openAgendaItemsModal(visit)" class="material-icons modal-trigger pointer" href="#agendaItems-modal">launch</i>
             </td>

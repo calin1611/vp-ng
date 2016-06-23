@@ -1,7 +1,7 @@
 app.service('loginService', ['$http', '$rootScope', function ($http, $rootScope) {
     var baseUrl = "http://localhost:59557/api/";
     var loggedEmail = '';
-    
+
     this.checkIfLoggedIn = function () {
         console.log("In checkIfLoggedIn()");
         if (localStorage.getItem("encodedCredentials")) {
@@ -20,6 +20,7 @@ app.service('loginService', ['$http', '$rootScope', function ($http, $rootScope)
 
     this.login = function (email, password) {
         var encodedCredentials = this.encodeCredentials(email, password)
+
         var onSuccess = function () {
             $rootScope.$broadcast('loginService-logged', {
                 'logged': true,

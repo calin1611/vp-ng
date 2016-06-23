@@ -26,13 +26,14 @@ app.controller('loginController', ['$scope', 'loginService', '$window', '$rootSc
     $scope.encodeCredentials = function () {
         return loginService.encodeCredentials($scope.email, $scope.password);
     };
+    
     $scope.login = function () {
         console.log('in login');
         var encodedCredentials = '';
         if (localStorage.getItem("encodedCredentials")) {
             encodedCredentials = localStorage.getItem("encodedCredentials");
         } else {
-            encodedCredentials  = $scope.encodeCredentials();
+            encodedCredentials  = $scope.encodeCredentials(); //delete?
         }
         loginService.login($scope.email, $scope.password);
     };
