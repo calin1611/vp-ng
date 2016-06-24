@@ -17,6 +17,7 @@ app.controller('loginController', ['$scope', 'loginService', '$window', '$rootSc
         if (data.logged === true) {
             $scope.logged = true;
             $scope.user = data.user;
+            $('#loginModal').closeModal();
         } else {
             $scope.logged = false;
             $scope.user = '';
@@ -26,7 +27,7 @@ app.controller('loginController', ['$scope', 'loginService', '$window', '$rootSc
     $scope.encodeCredentials = function () {
         return loginService.encodeCredentials($scope.email, $scope.password);
     };
-    
+
     $scope.login = function () {
         console.log('in login');
         var encodedCredentials = '';

@@ -52,6 +52,7 @@
         </div>
     </section>
 
+    <!-- Js+jQuery visits table -->
     <div class="row">
         <table id="visits-table" class="highlight">
             <thead>
@@ -70,10 +71,12 @@
     </div>
 
 
+    <!-- AngularJS visits table -->
     <div class="row">
         <visits-table ng-if="visitsLoaded"></visits-table>
     </div>
 
+    <!-- Agenda Items Modal Structure -->
     <div id="agendaItems-modal" class="modal modal-fixed-footer">
         <div class="modal-content">
             <h4>Agenda Items for <span class="visit-title">{{visitTitle}}</span></h4>
@@ -96,10 +99,11 @@
             </button>
         </div>
     </div>
+
 </div>
 
 <!-- Add new visit Modal Structure -->
-<div id="add-visit-modal" class="modal">
+<div id="add-visit-modal" class="modal modal-fixed-footer">
     <div class="modal-content">
         <h4>Add a new visit</h4>
 
@@ -107,20 +111,86 @@
             <form method="post" class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="visit_title" type="text" class="validate">
                         <label for="visit_title">Title</label>
+                        <input ng-model="title" id="visit_title" type="text" class="validate">
                     </div>
                     <div class="input-field col s12">
-                        <input id="datepicker" type="date" class="datepicker">
-                        <label for="datepicker">Date</label>
+                        <!-- <input ng-model="date" id="datepicker" type="date" class="datepicker">
+                        <label for="datepicker">Date</label> -->
+                        <div class="input-field col s12">
+                            <input ng-model="date" type="datetime-local" class="validate">
+                        </div>
+                        <!-- <label for="inputCreated">Input date</label>
+                        <input input-date
+                            type="text"
+                            name="created"
+                            id="inputCreated"
+                            ng-model="currentTime"
+                            container=""
+                            format="dd/mm/yyyy"
+                            months-full="{{ month }}"
+                            months-short="{{ monthShort }}"
+                            weekdays-full="{{ weekdaysFull }}"
+                            weekdays-short="{{ weekdaysShort }}"
+                            weekdays-letter="{{ weekdaysLetter }}"
+                            disable="disable"
+                            min="{{ minDate }}"
+                            max="{{ maxDate }}"
+                            today="today"
+                            clear="clear"
+                            close="close"
+                            select-years="15"
+                            on-start="onStart()"
+                            on-render="onRender()"
+                            on-open="onOpen()"
+                            on-close="onClose()"
+                            on-set="onSet()"
+                            on-stop="onStop()" /> -->
+
+                    </div>
+
+                </div>
+                <div class="row">
+                    <!-- <div class="input-field col s12">
+                        <select id="select">
+                            <option  value="" disabled selected>Choose employee</option>
+                        </select>
+                        <label>Materialize Select</label>
+                    </div> -->
+                    <input ng-model="employeeId" type="text" name="employeeId" placeholder="Employee ID">
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a  ng-click="addVisit()" class=" modal-action modal-close waves-effect waves-green btn-flat">Add visit</a>
+    </div>
+</div>
+
+<!-- ANGULAR - Add new visit Modal Structure -->
+<!-- <div ng-controller="addVisitController" id="angular-add-visit-modal" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4>Add a new visit (AngularJS) </h4>
+
+        <div class="row">
+            <form method="post" class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="visit-title" type="text" class="validate">
+                        <label for="visit-title">Title</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input name="date-picker" type="date" class="datepicker">
+                        <label for="date-picker">Datcdsae</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select id="select">
+                        <select id="select-employee">
                             <option value="" disabled selected>Choose employee</option>
                         </select>
-                        <label>Materialize Select</label>
+                        <label>Select responsible employee</label>
                     </div>
                 </div>
 
@@ -128,12 +198,20 @@
         </div>
     </div>
     <div class="modal-footer">
-        <a  id="submit-visit2" class=" modal-action modal-close waves-effect waves-green btn-flat">Add visit</a>
+        <a  id="submit-visit" class=" modal-action modal-close waves-effect waves-green btn-flat">Add visit</a>
     </div>
-</div>
+</div> -->
 
-<div id="addBtn" class="fixed-action-btn modal-trigger" href="#add-visit-modal" style="bottom: 45px; right: 24px;">
+<!-- Js+jQuery Add button -->
+<div ng-controller="addVisitController" ng-click="openModal()" id="addBtn" class="fixed-action-btn modal-trigger" href="#add-visit-modal" style="bottom: 45px; right: 24px;">
     <a class="btn-floating btn-large red">
         <i class="large material-icons">add</i>
     </a>
 </div>
+
+<!-- AngularJS Add button -->
+<!-- <div ng-controller="addVisitController" class="fixed-action-btn modal-trigger" href="#angular-add-visit-modal" style="bottom: 105px; right: 24px;">
+    <a class="btn-floating btn-large blue">
+        <i class="large material-icons">add</i>
+    </a>
+</div> -->

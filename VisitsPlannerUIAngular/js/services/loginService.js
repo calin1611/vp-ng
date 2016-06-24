@@ -19,7 +19,7 @@ app.service('loginService', ['$http', '$rootScope', function ($http, $rootScope)
     };
 
     this.login = function (email, password) {
-        var encodedCredentials = this.encodeCredentials(email, password)
+        var encodedCredentials = this.encodeCredentials(email, password);
 
         var onSuccess = function () {
             $rootScope.$broadcast('loginService-logged', {
@@ -28,7 +28,6 @@ app.service('loginService', ['$http', '$rootScope', function ($http, $rootScope)
             });
             localStorage.setItem('encodedCredentials', encodedCredentials);
             localStorage.setItem('email', email);
-            $('#loginModal').closeModal(); //de mutat
             // checkIfLoggedIn();
             $http.defaults.headers.common.Authorization = localStorage.getItem('encodedCredentials');
 
