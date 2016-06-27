@@ -1,4 +1,4 @@
-app.controller('visitsController', ['$scope', '$http', 'dateService', '$sanitize', '$rootScope', function ($scope, $http, dateService, $sanitize, $rootScope) {
+app.controller('visitsController', ['$scope', '$http', 'dateService', '$sanitize', '$rootScope', 'visitService', function ($scope, $http, dateService, $sanitize, $rootScope, visitService) {
     var baseUrl = "http://localhost:59557/api/";
 
     $scope.visitsLoaded = false;
@@ -73,12 +73,17 @@ app.controller('visitsController', ['$scope', '$http', 'dateService', '$sanitize
     };
 
 
-    $scope.date = function (someDate) {
-        return dateService.getDateTime(someDate);
-    };
+    // $scope.date = function (someDate) {
+    //     var date = new Date(someDate);
+    //     return dateService.getDateTime(date);
+    // };
 
     $scope.date2 = function (dateTime) {
         return dateService.getDateTime2(dateTime);
+    };
+
+    $scope.openModal = function () {
+        visitService.getEmployees();
     };
 
     // $scope.showTooltip = function () {
@@ -229,27 +234,27 @@ app.controller('visitsController', ['$scope', '$http', 'dateService', '$sanitize
     //
     //     var contentToAdd = '';
     //     function addVisit() {
-    //         $.ajax({
-    //             url: baseUrl + 'employees/getall',
-    //             type: 'get',
-    //             success: function (data) {
-    //                 console.log(data);
-    //                 for (var i = 0; i < data.length; i++) {
-    //                     contentToAdd += '<option value="' + data[i].Id + '">' + data[i].FirstName +' ' + data[i].LastName + '</option>';
-    //                 }
-    //                 var selectElement = $('#select');
-    //                 selectElement.append(contentToAdd);
-    //             },
-    //             error: function () {
-    //                 console.error('Pe error');
-    //             },
-    //             done: function () {
-    //                 console.log('Pe done!');
-    //             },
-    //             complete: function () {
-    //                 console.log("complete");
-    //             }
-    //         });
+            // $.ajax({
+            //     url: baseUrl + 'employees/getall',
+            //     type: 'get',
+            //     success: function (data) {
+            //         console.log(data);
+            //         for (var i = 0; i < data.length; i++) {
+            //             contentToAdd += '<option value="' + data[i].Id + '">' + data[i].FirstName +' ' + data[i].LastName + '</option>';
+            //         }
+            //         var selectElement = $('#select');
+            //         selectElement.append(contentToAdd);
+            //     },
+            //     error: function () {
+            //         console.error('Pe error');
+            //     },
+            //     done: function () {
+            //         console.log('Pe done!');
+            //     },
+            //     complete: function () {
+            //         console.log("complete");
+            //     }
+            // });
     //         var selectElement = $('#select');
     //         selectElement.append(contentToAdd);
     //

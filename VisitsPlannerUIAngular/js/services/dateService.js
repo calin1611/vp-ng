@@ -1,7 +1,6 @@
 app.service('dateService', ['$http', '$rootScope', function ($http, $rootScope) {
 
     this.getDateTime = function (originalDate) {
-        var date = new Date(originalDate);
         returnObj = {};
         var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         returnObj.date = {

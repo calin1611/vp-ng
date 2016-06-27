@@ -15,6 +15,24 @@ app.service('visitService', ['$http', '$rootScope', function ($http, $rootScope)
             url: baseUrl + 'visits/add'
         })
         .then(onSuccess, onError);
+    };
 
-    }
+    this.getEmployees = function () {
+        var onEmployees = function (response) {
+            $rootScope.$broadcast('gotEmployees', { success: true, data: response.data});
+            // return response.data;
+        };
+
+        var onError = function (response) {
+            // $scope.$broadcast('error', { success: false});
+            console.log("In ERROR");
+            console.log(response);
+        };
+
+        return $http({
+            method: 'GET',
+            url: baseUrl + 'employees/getall'
+        })
+        .then(onEmployees, onError);
+    };
 }]);

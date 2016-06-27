@@ -103,7 +103,7 @@
 </div>
 
 <!-- Add new visit Modal Structure -->
-<div id="add-visit-modal" class="modal modal-fixed-footer">
+<div ng-controller="addVisitController" id="add-visit-modal" class="modal modal-fixed-footer">
     <div class="modal-content">
         <h4>Add a new visit</h4>
 
@@ -151,13 +151,15 @@
 
                 </div>
                 <div class="row">
-                    <!-- <div class="input-field col s12">
-                        <select id="select">
-                            <option  value="" disabled selected>Choose employee</option>
+
+                    <div class="input-field col s12">
+                        <p>Responsable employee</p>
+                        <select class="browser-default" ng-model="selectedEmployee">
+                            <option value="" disabled selected>Choose the employee</option>
+                            <option ng-repeat="employee in employees" value="{{employee.Id}}">{{employee.FirstName}} {{employee.LastName}}</option>
                         </select>
-                        <label>Materialize Select</label>
-                    </div> -->
-                    <input ng-model="employeeId" type="text" name="employeeId" placeholder="Employee ID">
+                    </div>
+
                 </div>
 
             </form>
@@ -168,50 +170,10 @@
     </div>
 </div>
 
-<!-- ANGULAR - Add new visit Modal Structure -->
-<!-- <div ng-controller="addVisitController" id="angular-add-visit-modal" class="modal modal-fixed-footer">
-    <div class="modal-content">
-        <h4>Add a new visit (AngularJS) </h4>
 
-        <div class="row">
-            <form method="post" class="col s12">
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input id="visit-title" type="text" class="validate">
-                        <label for="visit-title">Title</label>
-                    </div>
-                    <div class="input-field col s12">
-                        <input name="date-picker" type="date" class="datepicker">
-                        <label for="date-picker">Datcdsae</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <select id="select-employee">
-                            <option value="" disabled selected>Choose employee</option>
-                        </select>
-                        <label>Select responsible employee</label>
-                    </div>
-                </div>
-
-            </form>
-        </div>
-    </div>
-    <div class="modal-footer">
-        <a  id="submit-visit" class=" modal-action modal-close waves-effect waves-green btn-flat">Add visit</a>
-    </div>
-</div> -->
-
-<!-- Js+jQuery Add button -->
-<div ng-controller="addVisitController" ng-click="openModal()" id="addBtn" class="fixed-action-btn modal-trigger" href="#add-visit-modal" style="bottom: 45px; right: 24px;">
+<!-- Add-Visit button -->
+<div ng-click="openModal()" id="add-visit-button" class="fixed-action-btn modal-trigger" href="#add-visit-modal" style="bottom: 45px; right: 24px;">
     <a class="btn-floating btn-large red">
         <i class="large material-icons">add</i>
     </a>
 </div>
-
-<!-- AngularJS Add button -->
-<!-- <div ng-controller="addVisitController" class="fixed-action-btn modal-trigger" href="#angular-add-visit-modal" style="bottom: 105px; right: 24px;">
-    <a class="btn-floating btn-large blue">
-        <i class="large material-icons">add</i>
-    </a>
-</div> -->
