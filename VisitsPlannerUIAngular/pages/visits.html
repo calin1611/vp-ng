@@ -52,28 +52,10 @@
         </div>
     </section>
 
-    <!-- Js+jQuery visits table -->
-    <div class="row">
-        <table id="visits-table" class="highlight">
-            <thead>
-                <tr>
-                    <th data-field="title">Title</th>
-                    <th data-field="date">Date</th>
-                    <th data-field="organiser">Organiser</th>
-                    <th data-field="outcome">Outcome</th>
-                    <th data-field="details">Agenda Items</th>
-                </tr>
-            </thead>
-
-            <tbody>
-            </tbody>
-        </table>
-    </div>
-
 
     <!-- AngularJS visits table -->
     <div class="row">
-        <visits-table ng-if="visitsLoaded"></visits-table>
+        <visits-table ng-show="visitsLoaded"></visits-table>
     </div>
 
     <!-- Agenda Items Modal Structure -->
@@ -83,9 +65,9 @@
             <div class="row">
                 <div class="container">
 
-                    <agenda-items-table ng-hide="noAgendaItems"></agenda-items-table>
+                    <agenda-items-table ng-hide="numberOfAgendaItems"></agenda-items-table>
 
-                    <div ng-show="noAgendaItems">
+                    <div ng-show="numberOfAgendaItems">
                         <div class="card-panel red lighten-1">There are no agenda items for this visit</div>
                     </div>
 
@@ -112,13 +94,13 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <label for="visit_title">Title</label>
-                        <input ng-model="title" id="visit_title" type="text" class="validate">
+                        <input ng-model="visit.title" id="visit_title" type="text" class="validate">
                     </div>
                     <div class="input-field col s12">
                         <!-- <input ng-model="date" id="datepicker" type="date" class="datepicker">
                         <label for="datepicker">Date</label> -->
                         <div class="input-field col s12">
-                            <input ng-model="date" type="datetime-local" class="validate">
+                            <input ng-model="visit.date" type="datetime-local" class="validate">
                         </div>
                         <!-- <label for="inputCreated">Input date</label>
                         <input input-date
@@ -154,7 +136,7 @@
 
                     <div class="input-field col s12">
                         <p>Responsable employee</p>
-                        <select class="browser-default" ng-model="selectedEmployee">
+                        <select class="browser-default" ng-model="visit.employeeId">
                             <option value="" disabled selected>Choose the employee</option>
                             <option ng-repeat="employee in employees" value="{{employee.Id}}">{{employee.FirstName}} {{employee.LastName}}</option>
                         </select>
@@ -172,7 +154,7 @@
 
 
 <!-- Add-Visit button -->
-<div ng-click="openModal()" id="add-visit-button" class="fixed-action-btn modal-trigger" href="#add-visit-modal" style="bottom: 45px; right: 24px;">
+<div class="fixed-action-btn modal-trigger" href="#add-visit-modal" style="bottom: 45px; right: 24px;">
     <a class="btn-floating btn-large red">
         <i class="large material-icons">add</i>
     </a>
