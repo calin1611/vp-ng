@@ -21,7 +21,6 @@
                 <a href="mailto:{{visit.EmployeeData.Email}}">{{visit.EmployeeData.FirstName + ' ' + visit.EmployeeData.LastName}}</a>
             </td>
             <td>
-                <!-- {{visit.Outcome}} -->
                 <i ng-click="showOutcome(visit.Outcome)" ng-show="visit.Outcome === null" class="material-icons pointer">lock_outline</i>
                 <i ng-click="showOutcome(visit.Outcome)" ng-show="visit.Outcome !== null" class="material-icons pointer">subject</i>
             </td>

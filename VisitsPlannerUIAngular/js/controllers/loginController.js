@@ -1,17 +1,15 @@
 app.controller('loginController', ['$scope', 'loginService', '$window', '$rootScope',function ($scope, loginService, $window, $rootScope) {
-    var baseUrl = "http://localhost:59557/api/";
+    $('.modal-trigger').leanModal();
 
-    if(loginService.checkIfLoggedIn() === true) {
-        $scope.logged = true;
-        $scope.user = localStorage.getItem("email");
-    } else {
-        $scope.logged = false;
-        $scope.user = '';
-    }
-
-    $scope.triggerModal = function () {
-        $('.modal-trigger').leanModal();
-    };
+    (function() {
+        if(loginService.checkIfLoggedIn() === true) {
+            $scope.logged = true;
+            $scope.user = localStorage.getItem("email");
+        } else {
+            $scope.logged = false;
+            $scope.user = '';
+        }
+    }());
 
     $scope.$on('loginService-logged', function (event, data) {
         if (data.logged === true) {
@@ -29,13 +27,6 @@ app.controller('loginController', ['$scope', 'loginService', '$window', '$rootSc
     };
 
     $scope.login = function () {
-        console.log('in login');
-        var encodedCredentials = '';
-        if (localStorage.getItem("encodedCredentials")) {
-            encodedCredentials = localStorage.getItem("encodedCredentials");
-        } else {
-            encodedCredentials  = $scope.encodeCredentials(); //delete?
-        }
         loginService.login($scope.email, $scope.password);
     };
 

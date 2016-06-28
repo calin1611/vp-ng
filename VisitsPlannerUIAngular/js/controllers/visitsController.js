@@ -1,5 +1,4 @@
 app.controller('visitsController', ['$scope', 'visitsService', 'agendaItemsService', function ($scope, visitsService, agendaItemsService) {
-    var baseUrl = "http://localhost:59557/api/";
 
     $scope.visitsLoaded = false;
     $scope.$on('ajaxLoading', function (event, data) {
@@ -58,6 +57,9 @@ app.controller('visitsController', ['$scope', 'visitsService', 'agendaItemsServi
         } else {
             Materialize.toast(outcome, 20000);
         }
-
     };
+
+    $scope.deleteVisit = function (visitId) {
+
+    }
 }]);

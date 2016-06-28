@@ -31,10 +31,14 @@ namespace WebAPI.Services
             _repo.AddVisit(visit);
         }
 
+        public void Delete(int visitId, int organiserId) 
+        {
+            _repo.DeleteVisit(visitId, organiserId);
+        }
+
         public IList<VisitDto> CurrentMonth(int id)
         {
-            Log.Debug(System.Reflection.MethodBase.GetCurrentMethod().Name +
-                "() traced. Got visits for employee(ID): " + id);
+            Log.Debug(System.Reflection.MethodBase.GetCurrentMethod().Name + "() traced. Got visits for employee(ID): " + id);
 
             var visits = _repo.GetVisitsFromCurrentMonth().OrderBy(v => v.Date).ToList();
             var agendaItemsService = new AgendaItemsService();

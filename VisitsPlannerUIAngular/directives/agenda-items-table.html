@@ -1,32 +1,32 @@
 <table id="agenda-items-table" class="highlight">
-            <thead>
-                <tr>
-                    <th data-field="title">Title</th>
-                    <th data-field="date">Date</th>
-                    <th data-field="location">Location</th>
-                    <th data-field="outcome">Outcome</th>
-                    <th data-field="type">Type</th>
-                </tr>
-            </thead>
+    <thead>
+        <tr>
+            <th data-field="title">Title</th>
+            <th data-field="date">Date</th>
+            <th data-field="location">Location</th>
+            <th data-field="outcome">Outcome</th>
+            <th data-field="type">Type</th>
+        </tr>
+    </thead>
 
-            <tbody>
-                <tr ng-repeat="agendaItem in agendaItems">
-                    <td>
-                        {{agendaItem.Title}}
-                    </td>
-                    <td>
-                        {{agendaItem.Date | date}}
-                    </td>
-                    <td>
-                        {{agendaItem.LocationId}}
-                    </td>
-                    <td>
-                        <i ng-show="agendaItem.Outcome === null" class="material-icons tooltipped pointer" data-position="right" data-delay="50" data-tooltip="Insufficient permissions">lock_outline</i>
-                        <i ng-show="agendaItem.Outcome !== null" class="material-icons tooltipped pointer" data-position="right" data-delay="50" data-tooltip="{{visit.Outcome}}">subject</i>
-                    </td>
-                    <td>
-                        {{agendaItem.VisitTypeId}}
-                    </td>
-                </tr>
-            </tbody>
+    <tbody>
+        <tr ng-repeat="agendaItem in agendaItems">
+            <td>
+                {{agendaItem.Title}}
+            </td>
+            <td>
+                {{agendaItem.Date | date}}
+            </td>
+            <td>
+                {{agendaItem.LocationId}}
+            </td>
+            <td>
+                <i ng-show="agendaItem.Outcome === null" class="material-icons tooltipped pointer" data-position="right" data-delay="50" data-tooltip="Insufficient permissions">lock_outline</i>
+                <i ng-show="agendaItem.Outcome !== null" class="material-icons tooltipped pointer" data-position="right" data-delay="50" data-tooltip="{{visit.Outcome}}">subject</i>
+            </td>
+            <td>
+                {{agendaItem.VisitTypeId}}
+            </td>
+        </tr>
+    </tbody>
 </table>

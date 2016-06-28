@@ -1,16 +1,28 @@
 app.service('loginService', ['$http', '$rootScope', function ($http, $rootScope) {
-    var baseUrl = "http://localhost:59557/api/";
     var loggedEmail = '';
 
     this.checkIfLoggedIn = function () {
-        console.log("In checkIfLoggedIn()");
         if (localStorage.getItem("encodedCredentials")) {
-            console.log("True");
+            this.loggedIn = {
+                'logged': true,
+                'user': loggedEmail
+            };
             return true;
         } else {
-            console.log("false");
+            this.loggedIn = {
+                'logged': false,
+                'user': ''
+            };
             return false;
         }
+    };
+
+
+    var broadcastLogin = function (loginBoolean) {
+        $rootScope.$broadcast('loginService-logged', {
+            'logged': loginBoolean,
+            'user': loggedEmail
+        });
     };
 
     this.encodeCredentials = function (email, password) {
@@ -22,15 +34,15 @@ app.service('loginService', ['$http', '$rootScope', function ($http, $rootScope)
         var encodedCredentials = this.encodeCredentials(email, password);
 
         var onSuccess = function () {
-            $rootScope.$broadcast('loginService-logged', {
-                'logged': true,
-                'user': loggedEmail
-            });
+            broadcastLogin(true);
             localStorage.setItem('encodedCredentials', encodedCredentials);
             localStorage.setItem('email', email);
-            // checkIfLoggedIn();
             $http.defaults.headers.common.Authorization = localStorage.getItem('encodedCredentials');
 
+            this.loggedIn = {
+                'logged': true,
+                'user': email
+            };
         };
 
         var onError = function () {
@@ -48,10 +60,14 @@ app.service('loginService', ['$http', '$rootScope', function ($http, $rootScope)
     this.logout = function () {
         localStorage.removeItem("encodedCredentials");
         localStorage.removeItem("email");
-        $rootScope.$broadcast('loginService-logged', {
+        $http.defaults.headers.common.Authorization = localStorage.getItem('encodedCredentials');
+
+        broadcastLogin(false);
+
+        this.loggedIn = {
             'logged': false,
             'user': ''
-        });
+        };
     };
 
 }]);

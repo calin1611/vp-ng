@@ -23,6 +23,17 @@ namespace VisitsPlannerModel.Repository
             }
         }
 
+        public void DeleteAgendaItem(int agendaItemId)
+        {
+            using (var context = new VPEntities())
+            {
+                AgendaItem agendaItemToDelete = context.AgendaItems.FirstOrDefault(ai => ai.Id == agendaItemId);
+
+                context.AgendaItems.Remove(agendaItemToDelete);
+                context.SaveChanges();
+            }
+        }
+
         public AgendaItemDto GetAgendaItemById(int agendaItemId)
         {
             using (var context = new VPEntities())

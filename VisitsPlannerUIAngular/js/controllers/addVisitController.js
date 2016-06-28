@@ -1,7 +1,5 @@
 app.controller('addVisitController', ['$scope', 'visitsService', 'employeesService', function ($scope, visitsService, employeesService) {
 
-    var baseUrl = "http://localhost:59557/api/";
-
     $('.modal-trigger').leanModal();
     $('select').material_select();
 

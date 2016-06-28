@@ -6,14 +6,18 @@ using VisitsPlannerModel;
 using WebAPI.Services;
 using WebAPI.Helpers;
 using WebAPI.Authorization;
+using System.Net.Http;
+using System.Net;
 
 namespace WebAPI.Controllers
 {
-    //[CustomAuthorize]
+    [CustomAuthorize]
     public class VisitsController : ApiController
     {
-        private readonly VisitsService _visitsService;
-        private readonly EmployeesService _employeesService;
+        //private readonly VisitsService _visitsService;
+        //private readonly EmployeesService _employeesService;
+        private VisitsService _visitsService;
+        private EmployeesService _employeesService;
         private int UserId
         {
             get
@@ -33,6 +37,14 @@ namespace WebAPI.Controllers
             _visitsService = new VisitsService();
             _employeesService = new EmployeesService();
         }
+
+        [HttpDelete]
+        public HttpResponseMessage DeleteVisit(int id)
+        {
+            _visitsService.Delete(id, UserId);
+            return new HttpResponseMessage(HttpStatusCode.OK);
+        }
+
 
         [HttpPost]
         public void Add(VisitDto visit)

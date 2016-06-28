@@ -1,5 +1,4 @@
 app.service('visitsService', ['$http','$rootScope', function ($http, $rootScope) {
-    var baseUrl = "http://localhost:59557/api/";
 
     this.addVisit = function (visitObject) {
         return $http({
@@ -20,6 +19,5 @@ app.service('visitsService', ['$http','$rootScope', function ($http, $rootScope)
                     loading: false
                 });
             });
-
     };
 }]);
