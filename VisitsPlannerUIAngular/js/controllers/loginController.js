@@ -12,9 +12,9 @@ app.controller('loginController', ['$scope', 'loginService', '$window', '$rootSc
     }());
 
     $scope.$on('loginService-logged', function (event, data) {
-        if (data.logged === true) {
+        if (loginService.user.logged === true) {
             $scope.logged = true;
-            $scope.user = data.user;
+            $scope.user = loginService.user.email;
             $('#loginModal').closeModal();
         } else {
             $scope.logged = false;

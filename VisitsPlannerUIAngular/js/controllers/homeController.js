@@ -10,7 +10,7 @@ app.controller('homeController', ['$scope', 'loginService', function ($scope, lo
     }());
 
     $scope.$on('loginService-logged', function (event, data) {
-        if (data.logged === true) {
+        if (loginService.user.logged === true) {
             $scope.logged = true;
         } else {
             $scope.logged = false;

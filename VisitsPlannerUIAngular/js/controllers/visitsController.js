@@ -1,5 +1,7 @@
 app.controller('visitsController', ['$scope', 'visitsService', 'agendaItemsService', function ($scope, visitsService, agendaItemsService) {
 
+    $scope.visits = visitsService.visits;
+    
     $scope.visitsLoaded = false;
     $scope.$on('ajaxLoading', function (event, data) {
         $scope.ajaxLoading = data.loading;
@@ -8,6 +10,7 @@ app.controller('visitsController', ['$scope', 'visitsService', 'agendaItemsServi
     var onVisits = function (response) {
         $scope.visitsLoaded = true;
         $scope.visits = response.data;
+        visitsService.visits = response.data;
     };
 
     var onAgendaItems = function (response) {

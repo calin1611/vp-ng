@@ -1,5 +1,7 @@
 app.service('visitsService', ['$http','$rootScope', function ($http, $rootScope) {
 
+    this.visits = [];
+
     this.addVisit = function (visitObject) {
         return $http({
             method: 'POST',
@@ -20,4 +22,5 @@ app.service('visitsService', ['$http','$rootScope', function ($http, $rootScope)
                 });
             });
     };
+
 }]);

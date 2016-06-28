@@ -1,73 +1,57 @@
 app.service('loginService', ['$http', '$rootScope', function ($http, $rootScope) {
-    var loggedEmail = '';
+    var self = this;
 
-    this.checkIfLoggedIn = function () {
+    this.checkIfLoggedIn = function () { // CINE CHEAMA METODA ASTA SE ASTEAPTA SA PRIMEASCA UN RASPUNS true SAU false, PE CAND METODA E void
         if (localStorage.getItem("encodedCredentials")) {
-            this.loggedIn = {
-                'logged': true,
-                'user': loggedEmail
-            };
-            return true;
+            this.setUser(localStorage.getItem("email"));
         } else {
-            this.loggedIn = {
-                'logged': false,
-                'user': ''
-            };
-            return false;
+            this.clearUser();
         }
     };
 
-
-    var broadcastLogin = function (loginBoolean) {
-        $rootScope.$broadcast('loginService-logged', {
-            'logged': loginBoolean,
-            'user': loggedEmail
-        });
+    this.setUser = function(email) {
+        if(email)
+            this.user = {'logged': true, 'email': email};
+        else
+            throw new Exception('Email not set');
     };
 
-    this.encodeCredentials = function (email, password) {
-        loggedEmail = email;
+    this.clearUser = function() {
+        this.user = {'logged': false, 'email': ''};
+    };
+
+    var broadcastLogin = function () {
+        $rootScope.$broadcast('loginService-logged');
+    };
+
+    var encodeCredentials = function (email, password) {
         return 'Basic ' + btoa(email + ":" + password);
     };
 
     this.login = function (email, password) {
-        var encodedCredentials = this.encodeCredentials(email, password);
-
-        var onSuccess = function () {
-            broadcastLogin(true);
-            localStorage.setItem('encodedCredentials', encodedCredentials);
-            localStorage.setItem('email', email);
-            $http.defaults.headers.common.Authorization = localStorage.getItem('encodedCredentials');
-
-            this.loggedIn = {
-                'logged': true,
-                'user': email
-            };
-        };
-
-        var onError = function () {
-            return "Error while trying to LOG IN";
-        };
+        var encodedCredentials = encodeCredentials(email, password);
 
         $http({
             method: "GET",
             url: baseUrl + "employees/Authenticate",
             headers: {'Authorization' : encodedCredentials}
-        })
-        .then(onSuccess, onError);
+        }).then(function () {
+            localStorage.setItem('encodedCredentials', encodedCredentials);
+            localStorage.setItem('email', email);
+            $http.defaults.headers.common.Authorization = encodedCredentials;
+            self.setUser(email);
+            broadcastLogin(true);
+        }, function () {
+            return "Error while trying to LOG IN";
+        });
     };
 
     this.logout = function () {
         localStorage.removeItem("encodedCredentials");
         localStorage.removeItem("email");
-        $http.defaults.headers.common.Authorization = localStorage.getItem('encodedCredentials');
-
+        $http.defaults.headers.common.Authorization = null;
+        this.clearUser();
         broadcastLogin(false);
-
-        this.loggedIn = {
-            'logged': false,
-            'user': ''
-        };
     };
 
 }]);
