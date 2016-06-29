@@ -1,11 +1,13 @@
 app.service('loginService', ['$http', '$rootScope', function ($http, $rootScope) {
     var self = this;
 
-    this.checkIfLoggedIn = function () { // CINE CHEAMA METODA ASTA SE ASTEAPTA SA PRIMEASCA UN RASPUNS true SAU false, PE CAND METODA E void
+    this.checkIfLoggedIn = function () {
         if (localStorage.getItem("encodedCredentials")) {
             this.setUser(localStorage.getItem("email"));
+            return this.user;
         } else {
             this.clearUser();
+            return this.user;
         }
     };
 

@@ -1,7 +1,7 @@
-app.controller('visitsController', ['$scope', 'visitsService', 'agendaItemsService', function ($scope, visitsService, agendaItemsService) {
+app.controller('visitsController', ['$scope', 'visitsService', 'agendaItemsService', '$filter', function ($scope, visitsService, agendaItemsService, $filter) {
 
     $scope.visits = visitsService.visits;
-    
+
     $scope.visitsLoaded = false;
     $scope.$on('ajaxLoading', function (event, data) {
         $scope.ajaxLoading = data.loading;
@@ -31,11 +31,6 @@ app.controller('visitsController', ['$scope', 'visitsService', 'agendaItemsServi
     };
 
 
-    var getVisits = function (unitOfTime) { // unitOfTime: 'week' or 'month'
-        visitsService.getVisits(unitOfTime)
-        .then(onVisits, onError);
-    };
-
     $scope.getVisitsFromCurrentMonth = function () {
         getVisits('month');
     };
@@ -43,8 +38,15 @@ app.controller('visitsController', ['$scope', 'visitsService', 'agendaItemsServi
         getVisits('week');
     };
 
+    var getVisits = function (unitOfTime) { // unitOfTime: 'week' or 'month'
+        visitsService.getVisits(unitOfTime)
+        .then(onVisits, onError);
+    };
+
 
     $scope.openAgendaItemsModal = function (visit) {
+        visitsService.selectedVisit = visit.Id;
+
         getAgendaItemsForVisit(visit.Id);
         $scope.visitTitle = visit.Title;
     };
@@ -62,7 +64,14 @@ app.controller('visitsController', ['$scope', 'visitsService', 'agendaItemsServi
         }
     };
 
-    $scope.deleteVisit = function (visitId) {
+    $scope.deleteVisit = function () {
+        visitsService.deleteVisit()
+            .then(function (response) {
+                visitsService.removeItemFromService(visitsService.visits, visitsService.selectedVisit);
 
-    }
+                Materialize.toast("The visit was deleted and you can't do anything about this.", 6000);
+            }, function (error) {
+                Materialize.toast("You don't have the required permissions", 6000);
+            });
+    };
 }]);

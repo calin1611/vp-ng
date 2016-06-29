@@ -1,7 +1,7 @@
 app.controller('homeController', ['$scope', 'loginService', function ($scope, loginService) {
 
     (function() {
-        if(loginService.checkIfLoggedIn() === true) {
+        if(loginService.checkIfLoggedIn().logged === true) {
             $scope.logged = true;
         } else {
             $scope.logged = false;

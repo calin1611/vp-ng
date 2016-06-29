@@ -41,8 +41,12 @@ namespace WebAPI.Controllers
         [HttpDelete]
         public HttpResponseMessage DeleteVisit(int id)
         {
-            _visitsService.Delete(id, UserId);
-            return new HttpResponseMessage(HttpStatusCode.OK);
+
+            if (_visitsService.Delete(id, UserId))
+            {
+                return new HttpResponseMessage(HttpStatusCode.OK);
+            }
+            else return new HttpResponseMessage(HttpStatusCode.Forbidden);
         }
 
 

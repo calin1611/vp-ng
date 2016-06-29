@@ -17,11 +17,11 @@
 </head>
 <body ng-app="visitsPlanner">
 
-    <nav ng-controller="loginController">
+    <nav>
         <div class="nav-wrapper container">
             <a href="#/" class="brand-logo">Home</a>
-            
-            <ul class="right hide-on-med-and-down">
+
+            <ul ng-controller="loginController" class="right hide-on-med-and-down">
                 <li ng-hide="logged">
                     <button class="btn modal-trigger waves-effect waves-light" data-target="loginModal">login</button>
                 </li>

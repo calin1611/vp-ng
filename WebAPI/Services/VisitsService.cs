@@ -31,9 +31,9 @@ namespace WebAPI.Services
             _repo.AddVisit(visit);
         }
 
-        public void Delete(int visitId, int organiserId) 
+        public Boolean Delete(int visitId, int organiserId) 
         {
-            _repo.DeleteVisit(visitId, organiserId);
+            return _repo.DeleteVisit(visitId, organiserId);
         }
 
         public IList<VisitDto> CurrentMonth(int id)

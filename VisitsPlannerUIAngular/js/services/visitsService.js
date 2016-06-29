@@ -1,5 +1,7 @@
 app.service('visitsService', ['$http','$rootScope', function ($http, $rootScope) {
 
+    this.selectedVisit = '';
+
     this.visits = [];
 
     this.addVisit = function (visitObject) {
@@ -23,4 +25,27 @@ app.service('visitsService', ['$http','$rootScope', function ($http, $rootScope)
             });
     };
 
+    this.deleteVisit = function () {
+        return $http.delete(baseUrl + 'visits/DeleteVisit/' + this.selectedVisit);
+    };
+
+    this.removeItemFromService = function (itemContainer, itemId) {
+        var i=0, len=itemContainer.length;
+        for (; i<len; i++) {
+          if (+itemContainer[i].Id == +itemId) {
+            itemContainer.splice(i, 1);
+          }
+        }
+    };
+
 }]);
+
+// this.getAgendaItemById = function (input, id) {
+//     var i=0, len=input.length;
+//     for (; i<len; i++) {
+//       if (+input[i].Id == +id) {
+//         return input[i];
+//       }
+//     }
+//     return null;
+// };

@@ -2,7 +2,7 @@ app.controller('loginController', ['$scope', 'loginService', '$window', '$rootSc
     $('.modal-trigger').leanModal();
 
     (function() {
-        if(loginService.checkIfLoggedIn() === true) {
+        if(loginService.checkIfLoggedIn().logged === true) {
             $scope.logged = true;
             $scope.user = localStorage.getItem("email");
         } else {

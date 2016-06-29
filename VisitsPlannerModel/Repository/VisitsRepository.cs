@@ -241,7 +241,7 @@ namespace VisitsPlannerModel.Repository
         //    }
         //}
 
-        public void DeleteVisit(int visitId, int organiserId)
+        public Boolean DeleteVisit(int visitId, int organiserId)
         {
             using (var context = new VPEntities())
             {
@@ -251,7 +251,9 @@ namespace VisitsPlannerModel.Repository
                 {
                     context.Visits.Remove(deleteVisit);
                     context.SaveChanges();
+                    return true;
                 }
+                return false;
             }
         }
     }
