@@ -1,16 +1,40 @@
 app.controller('visitsController', ['$scope', 'visitsService', 'agendaItemsService', '$filter', function ($scope, visitsService, agendaItemsService, $filter) {
 
     $scope.visits = visitsService.visits;
-
     $scope.visitsLoaded = false;
+
     $scope.$on('ajaxLoading', function (event, data) {
         $scope.ajaxLoading = data.loading;
     });
+
+    $scope.getVisitsFromCurrentMonth = function () {
+        getVisits('month');
+    };
+    $scope.getVisitsFromCurrentWeek = function () {
+        getVisits('week');
+    };
+
+    var getVisits = function (unitOfTime) { // unitOfTime: 'week' or 'month'
+        visitsService.getVisits(unitOfTime)
+        .then(onVisits, onError);
+    };
 
     var onVisits = function (response) {
         $scope.visitsLoaded = true;
         $scope.visits = response.data;
         visitsService.visits = response.data;
+    };
+
+    $scope.openAgendaItemsModal = function (visit) {
+        visitsService.selectedVisit = visit.Id;
+
+        getAgendaItemsForVisit(visit.Id);
+        $scope.visitTitle = visit.Title;
+    };
+
+    var getAgendaItemsForVisit =  function (visitId) {
+        agendaItemsService.getAgendaItems(visitId)
+        .then(onAgendaItems, onError);
     };
 
     var onAgendaItems = function (response) {
@@ -30,37 +54,11 @@ app.controller('visitsController', ['$scope', 'visitsService', 'agendaItemsServi
         Materialize.toast('There was a problem when connecting to the server.', 20000);
     };
 
-
-    $scope.getVisitsFromCurrentMonth = function () {
-        getVisits('month');
-    };
-    $scope.getVisitsFromCurrentWeek = function () {
-        getVisits('week');
-    };
-
-    var getVisits = function (unitOfTime) { // unitOfTime: 'week' or 'month'
-        visitsService.getVisits(unitOfTime)
-        .then(onVisits, onError);
-    };
-
-
-    $scope.openAgendaItemsModal = function (visit) {
-        visitsService.selectedVisit = visit.Id;
-
-        getAgendaItemsForVisit(visit.Id);
-        $scope.visitTitle = visit.Title;
-    };
-
-    var getAgendaItemsForVisit =  function (visitId) {
-        agendaItemsService.getAgendaItems(visitId)
-            .then(onAgendaItems, onError);
-    };
-
     $scope.showOutcome = function (outcome) {
         if (outcome === null) {
-            Materialize.toast("You don't have the required permissions", 20000);
+            Materialize.toast("You don't have the required permissions", 6000);
         } else {
-            Materialize.toast(outcome, 20000);
+            Materialize.toast(outcome, 6000);
         }
     };
 

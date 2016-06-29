@@ -1,5 +1,4 @@
 app.service('loginService', ['$http', '$rootScope', function ($http, $rootScope) {
-    var self = this;
 
     this.checkIfLoggedIn = function () {
         if (localStorage.getItem("encodedCredentials")) {
@@ -31,6 +30,7 @@ app.service('loginService', ['$http', '$rootScope', function ($http, $rootScope)
     };
 
     this.login = function (email, password) {
+        var self = this;
         var encodedCredentials = encodeCredentials(email, password);
 
         $http({

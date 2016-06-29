@@ -15,7 +15,7 @@
                 {{visit.Title}}
             </td>
             <td>
-                {{visit.Date | date}}
+                {{visit.Date | date : 'dd-MMM-yyyy @ HH:mm'}}
             </td>
             <td>
                 <a href="mailto:{{visit.EmployeeData.Email}}">{{visit.EmployeeData.FirstName + ' ' + visit.EmployeeData.LastName}}</a>
