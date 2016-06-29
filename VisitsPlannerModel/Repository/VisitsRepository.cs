@@ -240,5 +240,21 @@ namespace VisitsPlannerModel.Repository
         //        return returnList;
         //    }
         //}
+
+        public Boolean DeleteVisit(int visitId, int organiserId)
+        {
+            using (var context = new VPEntities())
+            {
+                Visit deleteVisit = context.Visits.FirstOrDefault(v => v.Id == visitId);
+
+                if (deleteVisit.OrganiserId == organiserId)
+                {
+                    context.Visits.Remove(deleteVisit);
+                    context.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+        }
     }
 }

@@ -1,0 +1,32 @@
+<table id="visits-table" class="highlight">
+    <thead>
+        <tr>
+            <th data-field="title">Title</th>
+            <th data-field="date">Date</th>
+            <th data-field="organiser">Organiser</th>
+            <th data-field="outcome">Outcome</th>
+            <th data-field="type">Agenda Items</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr ng-repeat="visit in visits">
+            <td>
+                {{visit.Title}}
+            </td>
+            <td>
+                {{visit.Date | date : 'dd-MMM-yyyy @ HH:mm'}}
+            </td>
+            <td>
+                <a href="mailto:{{visit.EmployeeData.Email}}">{{visit.EmployeeData.FirstName + ' ' + visit.EmployeeData.LastName}}</a>
+            </td>
+            <td>
+                <i ng-click="showOutcome(visit.Outcome)" ng-show="visit.Outcome === null" class="material-icons pointer">lock_outline</i>
+                <i ng-click="showOutcome(visit.Outcome)" ng-show="visit.Outcome !== null" class="material-icons pointer">subject</i>
+            </td>
+            <td>
+                <i ng-click="openAgendaItemsModal(visit)" class="material-icons modal-trigger pointer" href="#agendaItems-modal">launch</i>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,5 +1,5 @@
 <!-- Loading image -->
-<div id="spinner" class="preloader-wrapper big active">
+<div ng-show="ajaxLoading" id="loading-animation" class="preloader-wrapper big active">
     <div class="spinner-layer spinner-blue">
         <div class="circle-clipper left">
             <div class="circle"></div>
@@ -46,88 +46,46 @@
     <section class="first-row">
         <div class="row">
             <div class="col s12">
-                <a class="waves-effect waves-light btn-large" id="current-month">Current month</a>
-                <a class="waves-effect waves-light btn-large" id="current-week">Current week</a>
+                <a class="waves-effect waves-light btn-large" id="current-month" ng-click="getVisitsFromCurrentMonth()">Current month</a>
+                <a class="waves-effect waves-light btn-large" id="current-week" ng-click="getVisitsFromCurrentWeek()">Current week</a>
             </div>
         </div>
     </section>
 
-    <div class="row">
-        <table id="visits-table" class="highlight">
-            <thead>
-                <tr>
-                    <th data-field="title">Title</th>
-                    <th data-field="date">Date</th>
-                    <th data-field="organiser">Organiser</th>
-                    <th data-field="outcome">Outcome</th>
-                    <th data-field="details">Agenda Items</th>
-                </tr>
-            </thead>
 
-            <tbody>
-            </tbody>
-        </table>
+    <!-- AngularJS visits table -->
+    <div class="row">
+        <visits-table ng-show="visitsLoaded"></visits-table>
     </div>
 
-
-    <div class="row">
-        <table id="visits-table-ng" class="highlight">
-            <thead>
-                <tr>
-                    <th data-field="title">Title</th>
-                    <th data-field="date">Date</th>
-                    <th data-field="organiser">Organiser</th>
-                    <th data-field="outcome">Outcome</th>
-                    <th data-field="details">Agenda Items</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr ng-repeat="visit in visits">
-
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
+    <!-- Agenda Items Modal Structure -->
     <div id="agendaItems-modal" class="modal modal-fixed-footer">
         <div class="modal-content">
-            <h4>Agenda Items for <span id="visit-title"></span></h4>
-            <div>
-                <form method="get" class="col s12">
+            <h4>Agenda Items for <span class="visit-title">{{visitTitle}}</span></h4>
+            <div class="row">
+                <div class="container">
 
-                    <div class="row">
-                        <div class="container">
-                            <table id="agendaItems-table" class="highlight">
-                                <thead>
-                                    <tr>
-                                        <th data-field="title">Title</th>
-                                        <th data-field="date">Date</th>
-                                        <th data-field="location">Location</th>
-                                        <th data-field="outcome">Outcome</th>
-                                        <th data-field="type">Type</th>
-                                    </tr>
-                                </thead>
+                    <agenda-items-table ng-hide="numberOfAgendaItems"></agenda-items-table>
 
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
+                    <div ng-show="numberOfAgendaItems">
+                        <div class="card-panel red lighten-1">There are no agenda items for this visit</div>
                     </div>
-                </form>
+
+                </div>
             </div>
         </div>
         <div class="modal-footer">
-            <button  class="btn waves-effect waves-light" type="button" name="action">
-                Button
-                <i class="material-icons right">send</i>
+            <button ng-click="deleteVisit()" class="btn waves-effect waves-light" type="button" name="action">
+                Delete visit
+                <i class="material-icons right">delete</i>
             </button>
         </div>
     </div>
+
 </div>
 
 <!-- Add new visit Modal Structure -->
-<div id="add-visit-modal" class="modal">
+<div ng-controller="addVisitController" id="add-visit-modal" class="modal modal-fixed-footer">
     <div class="modal-content">
         <h4>Add a new visit</h4>
 
@@ -135,35 +93,69 @@
             <form method="post" class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="visit_title" type="text" class="validate">
                         <label for="visit_title">Title</label>
+                        <input ng-model="visit.title" id="visit_title" type="text" class="validate">
                     </div>
                     <div class="input-field col s12">
-                        <input id="datepicker" type="date" class="datepicker">
-                        <label for="datepicker">Date</label>
+                        <!-- <input ng-model="date" id="datepicker" type="date" class="datepicker">
+                        <label for="datepicker">Date</label> -->
+                        <div class="input-field col s12">
+                            <input ng-model="visit.date" type="datetime-local" class="validate">
+                        </div>
+                        <!-- <label for="inputCreated">Input date</label>
+                        <input input-date
+                            type="text"
+                            name="created"
+                            id="inputCreated"
+                            ng-model="currentTime"
+                            container=""
+                            format="dd/mm/yyyy"
+                            months-full="{{ month }}"
+                            months-short="{{ monthShort }}"
+                            weekdays-full="{{ weekdaysFull }}"
+                            weekdays-short="{{ weekdaysShort }}"
+                            weekdays-letter="{{ weekdaysLetter }}"
+                            disable="disable"
+                            min="{{ minDate }}"
+                            max="{{ maxDate }}"
+                            today="today"
+                            clear="clear"
+                            close="close"
+                            select-years="15"
+                            on-start="onStart()"
+                            on-render="onRender()"
+                            on-open="onOpen()"
+                            on-close="onClose()"
+                            on-set="onSet()"
+                            on-stop="onStop()" /> -->
+
                     </div>
+
                 </div>
                 <div class="row">
+
                     <div class="input-field col s12">
-                        <select id="select">
-                            <option value="" disabled selected>Choose employee</option>
+                        <p>Responsable employee</p>
+                        <select class="browser-default" ng-model="visit.employeeId">
+                            <option value="" disabled selected>Choose the employee</option>
+                            <option ng-repeat="employee in employees" value="{{employee.Id}}">{{employee.FirstName}} {{employee.LastName}}</option>
                         </select>
-                        <label>Materialize Select</label>
                     </div>
+
                 </div>
 
             </form>
         </div>
     </div>
     <div class="modal-footer">
-        <a  id="submit-visit2" class=" modal-action modal-close waves-effect waves-green btn-flat">Add visit</a>
+        <a  ng-click="addVisit()" class=" modal-action modal-close waves-effect waves-green btn-flat">Add visit</a>
     </div>
 </div>
 
-<div id="addBtn" class="fixed-action-btn modal-trigger" href="#add-visit-modal" style="bottom: 45px; right: 24px;">
+
+<!-- Add-Visit button -->
+<div class="fixed-action-btn modal-trigger" href="#add-visit-modal" style="bottom: 45px; right: 24px;">
     <a class="btn-floating btn-large red">
         <i class="large material-icons">add</i>
     </a>
 </div>
-
-<script type="text/javascript" src="../js/visits.js"></script>

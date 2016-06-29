@@ -15,11 +15,11 @@ input {
     margin: 0px 20px;
 }
 
-#spinner {
-    display: none;
+#loading-animation {
     position: fixed;
     top: 50%;
     left: 50%;
+    z-index: 2;
 }
 
 tr {
@@ -27,4 +27,8 @@ tr {
 }
 .pointer {
     cursor:pointer;
+}
+
+.visit-title{
+    font-weight: bold;
 }
