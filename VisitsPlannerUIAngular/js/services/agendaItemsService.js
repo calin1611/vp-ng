@@ -7,4 +7,9 @@ app.service('agendaItemsService', ['$http', function ($http) {
     this.agendaItems = '';
 
     this.selectedVisit = '';
+    this.agendaItemToAdd = '';
+
+    this.saveAgendaItem = function () {
+        return $http.post(baseUrl + 'agendaItems/AddAgendaItem', this.agendaItemToAdd);
+    }
 }]);

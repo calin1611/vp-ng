@@ -12,3 +12,17 @@ C:\Project\Calin\Visits Planner\VisitsPlannerUI\bin\System.Web.Http.WebHost.xml
 C:\Project\Calin\Visits Planner\VisitsPlannerUI\obj\Debug\VisitsPlannerUI.csprojResolveAssemblyReference.cache
 C:\Project\Calin\Visits Planner\VisitsPlannerUI\obj\Debug\VisitsPlannerUI.dll
 C:\Project\Calin\Visits Planner\VisitsPlannerUI\obj\Debug\VisitsPlannerUI.pdb
+C:\VisitsPlanner\vp-ng\VisitsPlannerUI\bin\VisitsPlannerUI.dll.config
+C:\VisitsPlanner\vp-ng\VisitsPlannerUI\bin\VisitsPlannerUI.dll
+C:\VisitsPlanner\vp-ng\VisitsPlannerUI\bin\VisitsPlannerUI.pdb
+C:\VisitsPlanner\vp-ng\VisitsPlannerUI\bin\Newtonsoft.Json.dll
+C:\VisitsPlanner\vp-ng\VisitsPlannerUI\bin\System.Net.Http.Formatting.dll
+C:\VisitsPlanner\vp-ng\VisitsPlannerUI\bin\System.Web.Http.dll
+C:\VisitsPlanner\vp-ng\VisitsPlannerUI\bin\System.Web.Http.WebHost.dll
+C:\VisitsPlanner\vp-ng\VisitsPlannerUI\bin\Newtonsoft.Json.xml
+C:\VisitsPlanner\vp-ng\VisitsPlannerUI\bin\System.Net.Http.Formatting.xml
+C:\VisitsPlanner\vp-ng\VisitsPlannerUI\bin\System.Web.Http.xml
+C:\VisitsPlanner\vp-ng\VisitsPlannerUI\bin\System.Web.Http.WebHost.xml
+C:\VisitsPlanner\vp-ng\VisitsPlannerUI\obj\Debug\VisitsPlannerUI.csprojResolveAssemblyReference.cache
+C:\VisitsPlanner\vp-ng\VisitsPlannerUI\obj\Debug\VisitsPlannerUI.dll
+C:\VisitsPlanner\vp-ng\VisitsPlannerUI\obj\Debug\VisitsPlannerUI.pdb

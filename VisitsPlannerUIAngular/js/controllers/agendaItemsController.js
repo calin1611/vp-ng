@@ -1,16 +1,23 @@
-app.controller('agendaItemsController', ['$scope', 'agendaItemsService', '$filter', function ($scope, agendaItemsService, $filter) {
+app.controller('agendaItemsController', ['$scope', 'agendaItemsService', 'visitsService', function ($scope, agendaItemsService, visitsService) {
 
     $scope.$on('ajaxLoading', function (event, data) {
         $scope.ajaxLoading = data.loading;
     });
 
-    $scope.agendaItemsService = agendaItemsService;
+    $scope.visitsService = visitsService;
 
-    $scope.$watch("agendaItemsService.selectedVisit", function(newVal, oldVal){
-        // if(newVal !== oldVal){
+    $scope.$watch("visitsService.selectedVisit", function(newVal, oldVal){
+        if(newVal !== oldVal){
             $scope.selectedVisit = newVal;
             getAgendaItemsForVisit($scope.selectedVisit.Id);
-        // }
+
+            $scope.showDeleteButton = function () {
+                if ($scope.selectedVisit.EmployeeData.Email === localStorage.getItem('email')) {
+                    return true;
+                }
+                return false;
+            };
+        }
     });
 
     var getAgendaItemsForVisit =  function (visitId) {
@@ -42,5 +49,19 @@ app.controller('agendaItemsController', ['$scope', 'agendaItemsService', '$filte
         } else {
             Materialize.toast(outcome, 6000);
         }
+    };
+
+    $scope.agendaItemToAdd = {};
+    $scope.saveAgendaItem = function () {
+        $scope.agendaItemToAdd.VisitId = visitsService.selectedVisit.Id;
+
+        agendaItemsService.agendaItemToAdd = $scope.agendaItemToAdd;
+        agendaItemsService.saveAgendaItem()
+            .then(function (response) {
+                console.log(response);
+                agendaItemsService.agendaItems.push(response.data);
+            }, function (error) {
+                console.error(error);
+            });
     };
 }]);

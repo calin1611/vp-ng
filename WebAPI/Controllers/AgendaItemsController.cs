@@ -19,10 +19,10 @@ namespace WebAPI.Controllers
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         [HttpPost]
-        public void AddAgendaItem(AgendaItemDto agendaItem)
+        public AgendaItemDto AddAgendaItem(AgendaItemDto agendaItem)
         {
             Log.Debug("POST " + System.Reflection.MethodBase.GetCurrentMethod().Name + " called");
-            _agendaItemsService.AddAgendaItem(agendaItem);
+            return _agendaItemsService.AddAgendaItem(agendaItem);
         }
 
         [HttpGet]

@@ -24,16 +24,17 @@ app.controller('visitsController', ['$scope', 'visitsService', 'agendaItemsServi
         $scope.visits = response.data;
         visitsService.visits = response.data;
     };
-
-    $scope.$watch("selectedVisit", function(newVal, oldVal){
-        if(newVal !== undefined){
-            agendaItemsService.selectedVisit = newVal;
-        }
-    });
+    //
+    // $scope.$watch("selectedVisit", function(newVal, oldVal){
+    //     if(newVal !== undefined){
+    //         agendaItemsService.selectedVisit = newVal;
+    //     }
+    // });
 
     $scope.openAgendaItemsModal = function (visit) {
-        visitsService.selectedVisit = visit.Id;
-        $scope.selectedVisit = visit;
+        visitsService.selectedVisit = visit;
+        // $scope.selectedVisit = visit;
+
     };
 
     var onError = function (response) {
@@ -53,9 +54,11 @@ app.controller('visitsController', ['$scope', 'visitsService', 'agendaItemsServi
     $scope.deleteVisit = function () {
         visitsService.deleteVisit()
             .then(function (response) {
-                visitsService.removeItemFromService(visitsService.visits, visitsService.selectedVisit);
+                visitsService.removeItemFromService(visitsService.visits, visitsService.selectedVisit.Id);
 
                 Materialize.toast("The visit was deleted and you can't do anything about this.", 6000);
+                $('#agendaItems-modal').closeModal();
+
             }, function (error) {
                 Materialize.toast("You don't have the required permissions", 6000);
             });

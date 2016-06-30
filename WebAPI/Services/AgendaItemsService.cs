@@ -20,10 +20,10 @@ namespace WebAPI.Services
 
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public void AddAgendaItem(AgendaItemDto agendaItem)
+        public AgendaItemDto AddAgendaItem(AgendaItemDto agendaItem)
         {
             Log.Debug(System.Reflection.MethodBase.GetCurrentMethod().Name + " traced. Added agendaItem with ID: " + agendaItem.Id);
-            _repo.AddAgendaItem(agendaItem);
+            return _repo.AddAgendaItem(agendaItem);
         }
 
         public void DeleteAgendaItem(int agendaItemId)

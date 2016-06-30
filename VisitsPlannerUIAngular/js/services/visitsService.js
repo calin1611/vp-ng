@@ -26,13 +26,12 @@ app.service('visitsService', ['$http','$rootScope', function ($http, $rootScope)
     };
 
     this.deleteVisit = function () {
-        return $http.delete(baseUrl + 'visits/DeleteVisit/' + this.selectedVisit);
+        return $http.delete(baseUrl + 'visits/DeleteVisit/' + this.selectedVisit.Id);
     };
 
     this.removeItemFromService = function (itemContainer, itemId) {
-        var i=0, len=itemContainer.length;
-        for (; i<len; i++) {
-          if (+itemContainer[i].Id == +itemId) {
+        for (var i=0; i<itemContainer.length; i++) {
+          if (itemContainer[i].Id == itemId) {
             itemContainer.splice(i, 1);
           }
         }

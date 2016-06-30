@@ -12,3 +12,17 @@ C:\Project\Calin\Visits Planner\ConsoleApplication1\bin\Debug\EntityFramework.Sq
 C:\Project\Calin\Visits Planner\ConsoleApplication1\obj\Debug\ConsoleApplication.csprojResolveAssemblyReference.cache
 C:\Project\Calin\Visits Planner\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
 C:\Project\Calin\Visits Planner\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+C:\VisitsPlanner\vp-ng\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\VisitsPlanner\vp-ng\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\VisitsPlanner\vp-ng\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\VisitsPlanner\vp-ng\ConsoleApplication1\bin\Debug\AutoMapper.dll
+C:\VisitsPlanner\vp-ng\ConsoleApplication1\bin\Debug\EntityFramework.SqlServer.dll
+C:\VisitsPlanner\vp-ng\ConsoleApplication1\bin\Debug\VisitsPlannerModel.dll
+C:\VisitsPlanner\vp-ng\ConsoleApplication1\bin\Debug\EntityFramework.dll
+C:\VisitsPlanner\vp-ng\ConsoleApplication1\bin\Debug\VisitsPlannerModel.pdb
+C:\VisitsPlanner\vp-ng\ConsoleApplication1\bin\Debug\AutoMapper.xml
+C:\VisitsPlanner\vp-ng\ConsoleApplication1\bin\Debug\EntityFramework.SqlServer.xml
+C:\VisitsPlanner\vp-ng\ConsoleApplication1\bin\Debug\EntityFramework.xml
+C:\VisitsPlanner\vp-ng\ConsoleApplication1\obj\Debug\ConsoleApplication.csprojResolveAssemblyReference.cache
+C:\VisitsPlanner\vp-ng\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\VisitsPlanner\vp-ng\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb

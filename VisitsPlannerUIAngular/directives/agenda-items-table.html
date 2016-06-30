@@ -28,5 +28,32 @@
                 {{agendaItem.VisitTypeId}}
             </td>
         </tr>
+
+        <tr>
+            <form>
+
+                <td>
+                    <input type="text" ng-model="agendaItemToAdd.Title" />
+                    {{agendaItemToAdd.Title}}
+                </td>
+                <td>
+                    <input type="datetime-local" ng-model="agendaItemToAdd.Date" />
+                    {{agendaItemToAdd.Date | date}}
+                </td>
+                <td>
+                    <input type="text" ng-model="agendaItemToAdd.LocationId" />
+                    {{agendaItemToAdd.LocationId}}
+                </td>
+                <td>
+                    <input type="text" ng-model="agendaItemToAdd.Outcome" />
+                    <!-- <i ng-show="agendaItemToAdd.Outcome === null" class="material-icons tooltipped pointer" data-position="right" data-delay="50" data-tooltip="Insufficient permissions">lock_outline</i>
+                    <i ng-show="agendaItemToAdd.Outcome !== null" class="material-icons tooltipped pointer" data-position="right" data-delay="50" data-tooltip="{{visit.Outcome}}">subject</i> -->
+                </td>
+                <td>
+                    <input type="text" ng-model="agendaItemToAdd.VisitTypeId" />
+                    {{agendaItemToAdd.VisitTypeId}}
+                </td>
+            </form>
+        </tr>
     </tbody>
 </table>

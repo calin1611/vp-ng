@@ -8,7 +8,7 @@ namespace VisitsPlannerModel.Repository.Interfaces
 {
     public interface IAgendaItemsRepository
     {
-        void AddAgendaItem(AgendaItemDto agendaItem);
+        AgendaItemDto AddAgendaItem(AgendaItemDto agendaItem);
         void DeleteAgendaItem(int agendaItemId);
         AgendaItemDto GetAgendaItemById(int id);
         IList<AgendaItemDto> GetAllAgendaItems();

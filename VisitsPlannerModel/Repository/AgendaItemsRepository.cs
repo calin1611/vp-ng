@@ -11,15 +11,34 @@ namespace VisitsPlannerModel.Repository
     public class AgendaItemsRepository : IAgendaItemsRepository
     {
 
-        public void AddAgendaItem(AgendaItemDto agendaItem)
+        public AgendaItemDto AddAgendaItem(AgendaItemDto agendaItem)
         {
             using (var context = new VPEntities())
             {
-                Mapper.CreateMap<AgendaItemDto, AgendaItem>();
-                AgendaItem newAgendaItem = Mapper.Map<AgendaItemDto, AgendaItem>(agendaItem);
+                AgendaItem newAgendaItem = new AgendaItem
+                {
+                    Title = agendaItem.Title,
+                    VisitId = agendaItem.VisitId,
+                    LocationId = agendaItem.LocationId,
+                    Date = agendaItem.Date,
+                    VisitTypeId = agendaItem.VisitTypeId,
+                    Outcome = agendaItem.Outcome
+                };
 
                 context.AgendaItems.Add(newAgendaItem);
                 context.SaveChanges();
+
+                AgendaItemDto agendaItemDto = new AgendaItemDto
+                {
+                    Id = newAgendaItem.Id,
+                    Date = newAgendaItem.Date,
+                    VisitId = newAgendaItem.VisitId,
+                    Title = newAgendaItem.Title,
+                    VisitTypeId = newAgendaItem.VisitTypeId,
+                    LocationId = newAgendaItem.LocationId
+                };
+
+                return agendaItemDto;
             }
         }
 
@@ -89,7 +108,7 @@ namespace VisitsPlannerModel.Repository
                 {
                     returnList.Add(new AgendaItemDto
                     {
-                        Id = agendaItem.VisitId,
+                        Id = agendaItem.Id,
                         Title = agendaItem.Title,
                         Date = agendaItem.Date,
                         VisitId = agendaItem.VisitId,

@@ -75,9 +75,23 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button ng-click="deleteVisit()" class="btn waves-effect waves-light" type="button" name="action">
-                Delete visit
+            <button ng-show="showDeleteButton()" ng-click="deleteVisit()" class="btn waves-effect waves-light" type="button" name="action">
                 <i class="material-icons right">delete</i>
+                Delete visit
+            </button>
+            <!-- ng-show="showEditButton()"  -->
+            <button ng-click="editVisit()" class="btn waves-effect waves-light" type="button" name="action">
+                <i class="material-icons right">mode_edit</i>
+                Edit visit
+            </button>
+            <!-- ng-show="showAddButton()"  -->
+            <button ng-click="addAgendaItem()" class="btn waves-effect waves-light" type="button" name="action">
+                <i class="material-icons right">add</i>
+                Add agenda item
+            </button>
+            <button ng-click="saveAgendaItem()" class="btn waves-effect waves-light" type="button" name="action">
+                <i class="material-icons right">done</i>
+                Save agenda item
             </button>
         </div>
     </div>
