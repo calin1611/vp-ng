@@ -59,9 +59,9 @@
     </div>
 
     <!-- Agenda Items Modal Structure -->
-    <div id="agendaItems-modal" class="modal modal-fixed-footer">
+    <div ng-controller="agendaItemsController" id="agendaItems-modal" class="modal modal-fixed-footer">
         <div class="modal-content">
-            <h4>Agenda Items for <span class="visit-title">{{visitTitle}}</span></h4>
+            <h4>Agenda Items for <span class="visit-title">{{selectedVisit.Title}}</span></h4>
             <div class="row">
                 <div class="container">
 

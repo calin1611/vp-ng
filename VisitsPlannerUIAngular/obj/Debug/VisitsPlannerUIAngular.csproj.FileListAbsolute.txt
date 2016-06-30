@@ -4,3 +4,9 @@ C:\Project\Calin\Visits Planner\VisitsPlannerUIAngular\bin\VisitsPlannerUIAngula
 C:\Project\Calin\Visits Planner\VisitsPlannerUIAngular\obj\Debug\VisitsPlannerUIAngular.csprojResolveAssemblyReference.cache
 C:\Project\Calin\Visits Planner\VisitsPlannerUIAngular\obj\Debug\VisitsPlannerUIAngular.dll
 C:\Project\Calin\Visits Planner\VisitsPlannerUIAngular\obj\Debug\VisitsPlannerUIAngular.pdb
+C:\VisitsPlanner\vp-ng\VisitsPlannerUIAngular\bin\VisitsPlannerUIAngular.dll.config
+C:\VisitsPlanner\vp-ng\VisitsPlannerUIAngular\bin\VisitsPlannerUIAngular.dll
+C:\VisitsPlanner\vp-ng\VisitsPlannerUIAngular\bin\VisitsPlannerUIAngular.pdb
+C:\VisitsPlanner\vp-ng\VisitsPlannerUIAngular\obj\Debug\VisitsPlannerUIAngular.csprojResolveAssemblyReference.cache
+C:\VisitsPlanner\vp-ng\VisitsPlannerUIAngular\obj\Debug\VisitsPlannerUIAngular.dll
+C:\VisitsPlanner\vp-ng\VisitsPlannerUIAngular\obj\Debug\VisitsPlannerUIAngular.pdb

@@ -25,27 +25,15 @@ app.controller('visitsController', ['$scope', 'visitsService', 'agendaItemsServi
         visitsService.visits = response.data;
     };
 
+    $scope.$watch("selectedVisit", function(newVal, oldVal){
+        if(newVal !== undefined){
+            agendaItemsService.selectedVisit = newVal;
+        }
+    });
+
     $scope.openAgendaItemsModal = function (visit) {
         visitsService.selectedVisit = visit.Id;
-
-        getAgendaItemsForVisit(visit.Id);
-        $scope.visitTitle = visit.Title;
-    };
-
-    var getAgendaItemsForVisit =  function (visitId) {
-        agendaItemsService.getAgendaItems(visitId)
-        .then(onAgendaItems, onError);
-    };
-
-    var onAgendaItems = function (response) {
-        $scope.agendaItems =  response.data;
-
-        $scope.numberOfAgendaItems = true;
-        if ($scope.agendaItems.length > 0) {
-            $scope.numberOfAgendaItems = false;
-        }
-
-        $('#agendaItems-modal').openModal();
+        $scope.selectedVisit = visit;
     };
 
     var onError = function (response) {
