@@ -16,6 +16,9 @@ namespace VisitsPlannerModel
         public int VisitTypeId { get; set; }
         public string Outcome { get; set; }
 
+        public LocationDto Location { get; set; }
+        public VisitTypeDto VisitType { get; set; }
+
 //        public Nullable<int> CreatedBy { get; set; }
 //        public Nullable<System.DateTime> CreatedOn { get; set; }
 //        public Nullable<int> ModifiedBy { get; set; }

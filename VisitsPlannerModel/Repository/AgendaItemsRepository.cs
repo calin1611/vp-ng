@@ -113,7 +113,18 @@ namespace VisitsPlannerModel.Repository
                         Date = agendaItem.Date,
                         VisitId = agendaItem.VisitId,
                         VisitTypeId = agendaItem.VisitTypeId,
-                        LocationId = agendaItem.LocationId
+                        LocationId = agendaItem.LocationId,
+                        Outcome = agendaItem.Outcome,
+                        Location = new LocationDto
+                        {
+                            //Id = agendaItem.Location.Id,
+                            Name = agendaItem.Location.Name,
+                            Address = agendaItem.Location.Address
+                        },
+                        VisitType = new VisitTypeDto
+                        {
+                            Type = agendaItem.VisitType.Type
+                        }
                     });
                 }
                 return returnList;

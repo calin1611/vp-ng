@@ -18,14 +18,14 @@
                 {{agendaItem.Date | date}}
             </td>
             <td>
-                {{agendaItem.LocationId}}
+                {{agendaItem.Location.Name}}
             </td>
             <td>
-                <i ng-show="agendaItem.Outcome === null" class="material-icons tooltipped pointer" data-position="right" data-delay="50" data-tooltip="Insufficient permissions">lock_outline</i>
-                <i ng-show="agendaItem.Outcome !== null" class="material-icons tooltipped pointer" data-position="right" data-delay="50" data-tooltip="{{visit.Outcome}}">subject</i>
+                <i ng-show="agendaItem.Outcome === null" ng-click="showOutcome(agendaItem.Outcome)" class="material-icons pointer" data-position="right" data-delay="50">lock_outline</i>
+                <i ng-show="agendaItem.Outcome !== null" ng-click="showOutcome(agendaItem.Outcome)" class="material-icons pointer" data-position="right" data-delay="50">subject</i>
             </td>
             <td>
-                {{agendaItem.VisitTypeId}}
+                {{agendaItem.VisitType.Type | titlecase}}
             </td>
         </tr>
 
@@ -46,8 +46,6 @@
                 </td>
                 <td>
                     <input type="text" ng-model="agendaItemToAdd.Outcome" />
-                    <!-- <i ng-show="agendaItemToAdd.Outcome === null" class="material-icons tooltipped pointer" data-position="right" data-delay="50" data-tooltip="Insufficient permissions">lock_outline</i>
-                    <i ng-show="agendaItemToAdd.Outcome !== null" class="material-icons tooltipped pointer" data-position="right" data-delay="50" data-tooltip="{{visit.Outcome}}">subject</i> -->
                 </td>
                 <td>
                     <input type="text" ng-model="agendaItemToAdd.VisitTypeId" />

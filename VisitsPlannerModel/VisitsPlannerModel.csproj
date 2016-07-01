@@ -76,9 +76,11 @@
     <Compile Include="DTO\EmployeeShareableDto.cs" />
     <Compile Include="DTO\Enums\NotificationType.cs" />
     <Compile Include="DTO\Enums\Role.cs" />
+    <Compile Include="DTO\LocationDto.cs" />
     <Compile Include="DTO\NotificationPreferenceDto.cs" />
     <Compile Include="DTO\NotificationTimeDto.cs" />
     <Compile Include="DTO\VisitDto.cs" />
+    <Compile Include="DTO\VisitTypeDto.cs" />
     <Compile Include="Employee.cs">
       <DependentUpon>VisitsPlannerModel.tt</DependentUpon>
     </Compile>

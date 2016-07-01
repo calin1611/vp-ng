@@ -1,4 +1,4 @@
-app.controller('agendaItemsController', ['$scope', 'agendaItemsService', 'visitsService', function ($scope, agendaItemsService, visitsService) {
+app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsService', 'visitsService', function ($scope, $filter, agendaItemsService, visitsService) {
     
     $scope.showAddAgendaItemForm = false;
 
@@ -59,11 +59,18 @@ app.controller('agendaItemsController', ['$scope', 'agendaItemsService', 'visits
         }
     };
 
+// Add Agenda Item
     $scope.agendaItemToAdd = {};
+
+    $scope.addAgendaItem = function () {
+        $scope.hideAgendaItemsTable = false;
+        $scope.showAddAgendaItemForm = true;
+    };
+
     $scope.saveAgendaItem = function () {
         $scope.agendaItemToAdd.VisitId = visitsService.selectedVisit.Id;
-
         agendaItemsService.agendaItemToAdd = $scope.agendaItemToAdd;
+
         agendaItemsService.saveAgendaItem()
             .then(function (response) {
                 console.log(response);
@@ -73,13 +80,7 @@ app.controller('agendaItemsController', ['$scope', 'agendaItemsService', 'visits
             });
     };
 
-    $scope.addAgendaItem = () => {
-        $scope.hideAgendaItemsTable = false;
-        $scope.showAddAgendaItemForm = true;
-    };
-
     $scope.cancelAddAgendaItem = function () {
-        // $scope.hideAgendaItemsTable = true
         checkIfAgendaItemsExist();
         $scope.agendaItemToAdd = {};
         $scope.showAddAgendaItemForm = false;

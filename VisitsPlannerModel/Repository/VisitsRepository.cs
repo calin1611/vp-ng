@@ -12,11 +12,6 @@ namespace VisitsPlannerModel.Repository
         {
             using (var context = new HistoryContext(3))
             {
-//                Mapper.CreateMap<VisitDto, Visit>();
-//
-//                Visit newVisit= Mapper.Map<VisitDto, Visit>(visitDto);
-
-
                 Visit newVisit = new Visit();
                 newVisit.Date = visitDto.Date;
                 newVisit.Title = visitDto.Title;
