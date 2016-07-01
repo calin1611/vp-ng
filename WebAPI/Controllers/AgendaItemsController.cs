@@ -54,5 +54,12 @@ namespace WebAPI.Controllers
             int userId = employeesService.GetIdByEmail(credentials[0]);
             return _agendaItemsService.GetAgendaItemsByVisitAndEmployee(visitId, userId);
         }
+
+        [HttpGet]
+        public AgendaItemsRelatedDataDto GetRelatedData()
+        {
+            return _agendaItemsService.GetRelatedData();
+        }
+
     }
 }

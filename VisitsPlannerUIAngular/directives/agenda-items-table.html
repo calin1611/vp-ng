@@ -41,8 +41,13 @@
                     {{agendaItemToAdd.Date | date}}
                 </td>
                 <td>
-                    <input type="text" ng-model="agendaItemToAdd.LocationId" />
+                    <input type="text" ng-model="agendaItemToAdd.LocationId" /> 
                     {{agendaItemToAdd.LocationId}}
+                    
+                    <select class="browser-default" ng-model="agendaItemToAdd.LocationId">
+                        <option value="" disabled selected>Location</option>
+                        <option ng-repeat="location in relatedData.locations" value="{{location.Id}}">{{location.Name}}</option>
+                    </select>
                 </td>
                 <td>
                     <input type="text" ng-model="agendaItemToAdd.Outcome" />

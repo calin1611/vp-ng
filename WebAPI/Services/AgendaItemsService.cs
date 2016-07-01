@@ -88,5 +88,11 @@ namespace WebAPI.Services
             return _repo.GetAgendaItemsByVisitAndEmployee(visitId, employeeId);
         }
 
+        public AgendaItemsRelatedDataDto GetRelatedData()
+        {
+            return _repo.GetRelatedData();
+        }
+
+
     }
 }

@@ -1,15 +1,20 @@
 app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsService', 'visitsService', function ($scope, $filter, agendaItemsService, visitsService) {
-    
-    $scope.showAddAgendaItemForm = false;
+
+    $scope.vm = {
+        showAddAgendaItemForm: false,
+        agendaItemToAdd: {},
+        relatedData: {}
+    };
+    $scope.visitsService = visitsService;
+    // Add Agenda Item
+    $('select').material_select();
 
     $scope.$on('ajaxLoading', function (event, data) {
         $scope.ajaxLoading = data.loading;
     });
 
-    $scope.visitsService = visitsService;
-
-    $scope.$watch("visitsService.selectedVisit", function(newVal, oldVal){
-        if(newVal !== oldVal){
+    $scope.$watch("visitsService.selectedVisit", function (newVal, oldVal) {
+        if (newVal !== oldVal) {
             $scope.selectedVisit = newVal;
             getAgendaItemsForVisit($scope.selectedVisit.Id);
 
@@ -22,19 +27,15 @@ app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsServic
         }
     });
 
-    var getAgendaItemsForVisit =  function (visitId) {
+    var getAgendaItemsForVisit = function (visitId) {
         agendaItemsService.getAgendaItems(visitId)
-        .then(onAgendaItems, onError);
+            .then(onAgendaItems, onError);
     };
 
-    function checkIfAgendaItemsExist() {
-        if ($scope.agendaItems.length > 0) {
-            $scope.hideAgendaItemsTable = false;
-        }
-        else {
-        $scope.hideAgendaItemsTable = true;            
-        }
-    }
+    var checkIfAgendaItemsExist = function () {
+        $scope.hideAgendaItemsTable = $scope.agendaItems.length === 0;
+    };
+
     var onAgendaItems = function (response) {
         agendaItemsService.agendaItems = response.data;
         $scope.agendaItems = agendaItemsService.agendaItems;
@@ -46,8 +47,7 @@ app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsServic
     };
 
     var onError = function (response) {
-        console.error("Angular XHR error: ");
-        console.log(response);
+        console.error("Angular XHR error: ", response);
         Materialize.toast('There was a problem when connecting to the server.', 20000);
     };
 
@@ -59,12 +59,15 @@ app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsServic
         }
     };
 
-// Add Agenda Item
-    $scope.agendaItemToAdd = {};
-
     $scope.addAgendaItem = function () {
         $scope.hideAgendaItemsTable = false;
         $scope.showAddAgendaItemForm = true;
+
+        agendaItemsService.getRelatedData()
+            .then(function (success) {
+                $scope.relatedData.locations = success.data.Location;
+                $scope.relatedData.visitTypes = success.data.VisitType;
+            });
     };
 
     $scope.saveAgendaItem = function () {

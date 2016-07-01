@@ -70,6 +70,7 @@
       <DependentUpon>VisitsPlannerModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DTO\AgendaItemDto.cs" />
+    <Compile Include="DTO\AgendaItemsRelatedDataDto.cs" />
     <Compile Include="DTO\CredentialsDto.cs" />
     <Compile Include="DTO\CustomerDto.cs" />
     <Compile Include="DTO\EmployeeDto.cs" />

@@ -199,5 +199,39 @@ namespace VisitsPlannerModel.Repository
                 return returnList;
             }
         }
+
+        public AgendaItemsRelatedDataDto GetRelatedData()
+        {
+            using (var context = new VPEntities())
+            {
+                var locations = context.Locations.ToList();
+                var visitTypes = context.VisitTypes.ToList();
+
+                var relatedData = new AgendaItemsRelatedDataDto();
+                relatedData.Location = new List<LocationDto>();
+                relatedData.VisitType = new List<VisitTypeDto>();
+
+                foreach (var location in locations)
+                {
+                    relatedData.Location.Add(new LocationDto
+                    {
+                        Id = location.Id,
+                        Address = location.Address,
+                        Name = location.Name
+                    });
+                }
+
+                foreach (var visitType in visitTypes)
+                {
+                    relatedData.VisitType.Add(new VisitTypeDto
+                    {
+                        Id = visitType.Id,
+                        Type = visitType.Type
+                    });
+                }
+
+                return relatedData;
+            }
+        }
     }
 }
