@@ -1,4 +1,4 @@
-app.controller('visitsController', ['$scope', 'visitsService', 'agendaItemsService', '$filter', function ($scope, visitsService, agendaItemsService, $filter) {
+app.controller('visitsController', ['$scope', 'visitsService', function ($scope, visitsService) {
 
     $scope.visits = visitsService.visits;
     $scope.visitsLoaded = false;
@@ -24,17 +24,9 @@ app.controller('visitsController', ['$scope', 'visitsService', 'agendaItemsServi
         $scope.visits = response.data;
         visitsService.visits = response.data;
     };
-    //
-    // $scope.$watch("selectedVisit", function(newVal, oldVal){
-    //     if(newVal !== undefined){
-    //         agendaItemsService.selectedVisit = newVal;
-    //     }
-    // });
 
     $scope.openAgendaItemsModal = function (visit) {
         visitsService.selectedVisit = visit;
-        // $scope.selectedVisit = visit;
-
     };
 
     var onError = function (response) {

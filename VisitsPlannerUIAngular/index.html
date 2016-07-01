@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Visits Planner</title>
@@ -7,14 +8,15 @@
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection" />
 
     <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 
-    <link rel="stylesheet" href="css/style.css" type="text/css"/>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
+
 <body ng-app="visitsPlanner">
 
     <nav>
@@ -26,24 +28,18 @@
                     <button class="btn modal-trigger waves-effect waves-light" data-target="loginModal">login</button>
                 </li>
 
-                <li ng-show="logged" ng-click="logout()" ><a href="#/">Logout, {{user}}</a></li>
+                <li ng-show="logged" ng-click="logout()"><a href="#/">Logout, {{user}}</a></li>
 
             </ul>
         </div>
     </nav>
 
     <!-- Login Modal -->
-    <div  ng-controller="loginController" id="loginModal" class="modal">
+    <div ng-controller="loginController" id="loginModal" class="modal">
         <div class="modal-content">
             <h4>Login</h4>
-            <div id="login-div">
-                <form method="get" id="login-form" class="col s12">
-                    <!-- <input type="text" id="email" name="email" placeholder="Email">
-                    <input type="password" id="password" name="password" placeholder="Password"> -->
-                    <!-- <input type="submit" id="login" value="Log In"> asta trimite userul si parola prin GET/URL-->
-                    <!-- <input type="button" id="login" value="Log In"> -->
-
-                    <!-- <div class="col l3 "></div> -->
+            <div>
+                <form ng-submit="login()" id="login-form" class="col s12">
 
                     <div class="row">
                         <div class="input-field col s12">
@@ -55,19 +51,15 @@
                             <input ng-model="password" id="password" type="password" class="validate">
                         </div>
 
+                        <div class="modal-footer">
+                            <button class="btn waves-effect waves-light">Login
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </div>
                     </div>
+
                 </form>
             </div>
-        </div>
-        <div class="modal-footer">
-            <!-- <div class="row"> -->
-
-            <!-- <div class="col s12"> -->
-                <button ng-click="login()" class="btn waves-effect waves-light" type="button" name="action">Login
-                    <i class="material-icons right">send</i>
-                </button>
-            <!-- </div> -->
-            <!-- </div> -->
         </div>
     </div>
 
@@ -114,4 +106,5 @@
 
 
 </body>
+
 </html>

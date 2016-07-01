@@ -1,4 +1,6 @@
 app.controller('agendaItemsController', ['$scope', 'agendaItemsService', 'visitsService', function ($scope, agendaItemsService, visitsService) {
+    
+    $scope.showAddAgendaItemForm = false;
 
     $scope.$on('ajaxLoading', function (event, data) {
         $scope.ajaxLoading = data.loading;
@@ -25,14 +27,20 @@ app.controller('agendaItemsController', ['$scope', 'agendaItemsService', 'visits
         .then(onAgendaItems, onError);
     };
 
+    function checkIfAgendaItemsExist() {
+        if ($scope.agendaItems.length > 0) {
+            $scope.hideAgendaItemsTable = false;
+        }
+        else {
+        $scope.hideAgendaItemsTable = true;            
+        }
+    }
     var onAgendaItems = function (response) {
         agendaItemsService.agendaItems = response.data;
         $scope.agendaItems = agendaItemsService.agendaItems;
 
-        $scope.numberOfAgendaItems = true;
-        if ($scope.agendaItems.length > 0) {
-            $scope.numberOfAgendaItems = false;
-        }
+        $scope.hideAgendaItemsTable = true;
+        checkIfAgendaItemsExist();
 
         $('#agendaItems-modal').openModal();
     };
@@ -63,5 +71,17 @@ app.controller('agendaItemsController', ['$scope', 'agendaItemsService', 'visits
             }, function (error) {
                 console.error(error);
             });
+    };
+
+    $scope.addAgendaItem = () => {
+        $scope.hideAgendaItemsTable = false;
+        $scope.showAddAgendaItemForm = true;
+    };
+
+    $scope.cancelAddAgendaItem = function () {
+        // $scope.hideAgendaItemsTable = true
+        checkIfAgendaItemsExist();
+        $scope.agendaItemToAdd = {};
+        $scope.showAddAgendaItemForm = false;
     };
 }]);

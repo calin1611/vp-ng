@@ -65,9 +65,9 @@
             <div class="row">
                 <div class="container">
 
-                    <agenda-items-table ng-hide="numberOfAgendaItems"></agenda-items-table>
+                    <agenda-items-table ng-hide="hideAgendaItemsTable"></agenda-items-table>
 
-                    <div ng-show="numberOfAgendaItems">
+                    <div ng-show="hideAgendaItemsTable">
                         <div class="card-panel red lighten-1">There are no agenda items for this visit</div>
                     </div>
 
@@ -75,21 +75,27 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button ng-show="showDeleteButton()" ng-click="deleteVisit()" class="btn waves-effect waves-light" type="button" name="action">
+            <button ng-click="deleteVisit()" ng-show="showDeleteButton()" class="btn waves-effect waves-light" type="button" name="action">
                 <i class="material-icons right">delete</i>
                 Delete visit
             </button>
-            <!-- ng-show="showEditButton()"  -->
+
             <button ng-click="editVisit()" class="btn waves-effect waves-light" type="button" name="action">
                 <i class="material-icons right">mode_edit</i>
                 Edit visit
             </button>
-            <!-- ng-show="showAddButton()"  -->
-            <button ng-click="addAgendaItem()" class="btn waves-effect waves-light" type="button" name="action">
+
+            <button ng-click="addAgendaItem()" ng-hide="showAddAgendaItemForm" class="btn waves-effect waves-light" type="button" name="action">
                 <i class="material-icons right">add</i>
                 Add agenda item
             </button>
-            <button ng-click="saveAgendaItem()" class="btn waves-effect waves-light" type="button" name="action">
+
+            <button ng-click="cancelAddAgendaItem()" ng-show="showAddAgendaItemForm" class="btn waves-effect waves-light" type="button" name="action">
+                <i class="material-icons right">delete</i>
+                Cancel
+            </button>
+
+            <button ng-click="saveAgendaItem()" ng-show="showAddAgendaItemForm" class="btn waves-effect waves-light" type="button" name="action">
                 <i class="material-icons right">done</i>
                 Save agenda item
             </button>

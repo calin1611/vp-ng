@@ -38,13 +38,3 @@ app.service('visitsService', ['$http','$rootScope', function ($http, $rootScope)
     };
 
 }]);
-
-// this.getAgendaItemById = function (input, id) {
-//     var i=0, len=input.length;
-//     for (; i<len; i++) {
-//       if (+input[i].Id == +id) {
-//         return input[i];
-//       }
-//     }
-//     return null;
-// };
