@@ -251,5 +251,39 @@ namespace VisitsPlannerModel.Repository
                 return false;
             }
         }
+
+        public VisitDto UpdateVisit(VisitDto visit)
+        {
+            using (var context = new VPEntities())
+            {
+                Visit visitFromDb = context.Visits.FirstOrDefault(v => v.Id == visit.Id);
+
+                visitFromDb.Date = visit.Date;
+                visitFromDb.Title = visit.Title;
+                visitFromDb.OrganiserId = visit.OrganiserId;
+                visitFromDb.Outcome = visit.Outcome;
+
+                context.SaveChanges();
+
+                VisitDto returnedVisit = new VisitDto
+                {
+                    Id = visitFromDb.Id,
+                    Title = visitFromDb.Title,
+                    Date = visitFromDb.Date,
+                    OrganiserId = visitFromDb.OrganiserId,
+                    Outcome = visitFromDb.Outcome,
+                    EmployeeData = new EmployeeShareableDto
+                        {
+                            Id = visitFromDb.Employee.Id,
+                            FirstName = visitFromDb.Employee.FirstName,
+                            LastName = visitFromDb.Employee.LastName,
+                            Email = visitFromDb.Employee.Email,
+                            Role = visitFromDb.Employee.Role,
+                        }
+                };
+
+                return returnedVisit;
+            }
+        }
     }
 }

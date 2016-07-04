@@ -96,6 +96,12 @@ namespace WebAPI.Controllers
             return _visitsService.VisitsWAIAssigned(UserId);
         }
 
+        [HttpPut]
+        public VisitDto UpdateVisit(VisitDto visit)
+        {
+            return _visitsService.UpdateVisit(visit);
+        }
+
         //[HttpGet]
         //public IList<VisitDto> MyAgendaItems(int id)
         //{

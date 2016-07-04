@@ -95,6 +95,11 @@ namespace WebAPI.Services
             return _repo.VisitsWithAgendaItemsAssigned(userId);
         }
 
+        public VisitDto UpdateVisit(VisitDto visit)
+        {
+            return _repo.UpdateVisit(visit);
+        }
+
         //internal IList<VisitDto> MyAgendaItems(int id)
         //{
         //    return _repo.MyAgendaItems(id);

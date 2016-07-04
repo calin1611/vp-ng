@@ -37,4 +37,16 @@ app.service('visitsService', ['$http','$rootScope', function ($http, $rootScope)
         }
     };
 
+    this.saveEditsToVisit = function () {
+        return $http.put(baseUrl + 'visits/UpdateVisit', this.selectedVisit);
+    };
+
+    this.updateCurrentVisitInService = function (newValue) {
+        for (var i=0; i<this.visits.length; i++) {
+          if (this.visits[i].Id == this.selectedVisit.Id) {
+            this.visits[i] = newValue;
+          }
+        }
+    };
+
 }]);

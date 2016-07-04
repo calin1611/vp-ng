@@ -1,4 +1,4 @@
-<table id="visits-table" class="highlight">
+<table id="visits-table" class="highlight centered">
     <thead>
         <tr>
             <th data-field="title">Title</th>
@@ -6,6 +6,7 @@
             <th data-field="organiser">Organiser</th>
             <th data-field="outcome">Outcome</th>
             <th data-field="type">Agenda Items</th>
+            <th data-field="">Available Operations</th>
         </tr>
     </thead>
 
@@ -26,6 +27,10 @@
             </td>
             <td>
                 <i ng-click="openAgendaItemsModal(visit)" class="material-icons modal-trigger pointer" href="#agendaItems-modal">launch</i>
+            </td>
+            <td>
+                <i ng-click="editVisit(visit)" class="material-icons modal-trigger pointer left" href="#edit-visit-modal">mode_edit</i>
+                <i class="material-icons pointer" ng-click="deleteVisit()" ng-show="showDeleteButton(visit)" >delete</i>
             </td>
         </tr>
     </tbody>

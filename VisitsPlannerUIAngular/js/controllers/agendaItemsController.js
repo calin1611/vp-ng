@@ -18,12 +18,6 @@ app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsServic
             $scope.selectedVisit = newVal;
             getAgendaItemsForVisit($scope.selectedVisit.Id);
 
-            $scope.showDeleteButton = function () {
-                if ($scope.selectedVisit.EmployeeData.Email === localStorage.getItem('email')) {
-                    return true;
-                }
-                return false;
-            };
         }
     });
 

@@ -1,4 +1,4 @@
-app.controller('visitsController', ['$scope', 'visitsService', function ($scope, visitsService) {
+app.controller('visitsController', ['$scope', 'visitsService', 'employeesService', function ($scope, visitsService, employeesService) {
 
     $scope.visits = visitsService.visits;
     $scope.visitsLoaded = false;
@@ -26,7 +26,17 @@ app.controller('visitsController', ['$scope', 'visitsService', function ($scope,
     };
 
     $scope.openAgendaItemsModal = function (visit) {
+        // $('.modal-trigger').leanModal();        
+        $('#agendaItems-modal').openModal();
+        
         visitsService.selectedVisit = visit;
+    };
+    
+    $scope.showDeleteButton = function (visit) {
+        if (visit.EmployeeData.Email === localStorage.getItem('email')) {
+            return true;
+        }
+        return false;
     };
 
     var onError = function (response) {
@@ -54,5 +64,32 @@ app.controller('visitsController', ['$scope', 'visitsService', function ($scope,
             }, function (error) {
                 Materialize.toast("You don't have the required permissions", 6000);
             });
+    };
+
+    var getEmployees = function () {
+        employeesService.getEmployees()
+        .then(function (success) {
+            $scope.employees = success.data;
+        }, function (error) {
+            console.error("Error when trying to get employees");
+        });
+    };
+
+    $scope.editVisit = function (visit) {
+        visitsService.selectedVisit = visit;
+        $scope.visitToEdit = visitsService.selectedVisit;
+        getEmployees();
+        $('#edit-visit-modal').openModal();
+    };
+
+    $scope.saveEditsToVisit = function () {
+        visitsService.saveEditsToVisit()
+        .then(function (success) {
+            visitsService.updateCurrentVisitInService(success.data);
+            Materialize.toast("Visit updated.", 6000);
+            
+        }, function (error) {
+            Materialize.toast("Visit updated.", 6000);
+        });
     };
 }]);
