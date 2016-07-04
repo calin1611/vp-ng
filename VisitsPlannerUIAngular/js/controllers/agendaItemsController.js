@@ -65,8 +65,8 @@ app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsServic
 
         agendaItemsService.getRelatedData()
             .then(function (success) {
-                $scope.relatedData.locations = success.data.Location;
-                $scope.relatedData.visitTypes = success.data.VisitType;
+                $scope.vm.relatedData.locations = success.data.Location;
+                $scope.vm.relatedData.visitTypes = success.data.VisitType;
             });
     };
 

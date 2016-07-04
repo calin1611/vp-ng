@@ -11,34 +11,50 @@ namespace VisitsPlannerModel.Repository
     public class AgendaItemsRepository : IAgendaItemsRepository
     {
 
-        public AgendaItemDto AddAgendaItem(AgendaItemDto agendaItem)
+        public AgendaItemDto AddAgendaItem(AgendaItemDto agendaItemToAdd)
         {
             using (var context = new VPEntities())
             {
                 AgendaItem newAgendaItem = new AgendaItem
                 {
-                    Title = agendaItem.Title,
-                    VisitId = agendaItem.VisitId,
-                    LocationId = agendaItem.LocationId,
-                    Date = agendaItem.Date,
-                    VisitTypeId = agendaItem.VisitTypeId,
-                    Outcome = agendaItem.Outcome
+                    Title = agendaItemToAdd.Title,
+                    Date = agendaItemToAdd.Date,
+                    VisitId = agendaItemToAdd.VisitId,
+                    LocationId = agendaItemToAdd.LocationId,
+                    VisitTypeId = agendaItemToAdd.VisitTypeId,
+                    Outcome = agendaItemToAdd.Outcome,
+                    Location= context.Locations.Where(l=>l.Id==agendaItemToAdd.LocationId).FirstOrDefault(),
+                    VisitType = context.VisitTypes.Where(vt => vt.Id == agendaItemToAdd.VisitTypeId).FirstOrDefault()
                 };
 
                 context.AgendaItems.Add(newAgendaItem);
                 context.SaveChanges();
 
-                AgendaItemDto agendaItemDto = new AgendaItemDto
+                AgendaItemDto justAdded = new AgendaItemDto();
+
+                AgendaItemDto recentlyAddedAgendaItem = new AgendaItemDto
                 {
                     Id = newAgendaItem.Id,
+                    Title = newAgendaItem.Title,
                     Date = newAgendaItem.Date,
                     VisitId = newAgendaItem.VisitId,
-                    Title = newAgendaItem.Title,
                     VisitTypeId = newAgendaItem.VisitTypeId,
-                    LocationId = newAgendaItem.LocationId
+                    LocationId = newAgendaItem.LocationId,
+                    Outcome = newAgendaItem.Outcome,
+                    Location = new LocationDto()
+                    {
+                        Id = newAgendaItem.Location.Id,
+                        Name = newAgendaItem.Location.Name,
+                        Address = newAgendaItem.Location.Address
+                    },
+                    VisitType = new VisitTypeDto
+                    {
+                        Id = newAgendaItem.VisitType.Id,
+                        Type = newAgendaItem.VisitType.Type
+                    }
                 };
 
-                return agendaItemDto;
+                return recentlyAddedAgendaItem;
             }
         }
 
