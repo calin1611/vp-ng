@@ -51,10 +51,10 @@ namespace WebAPI.Controllers
 
 
         [HttpPost]
-        public void Add(VisitDto visit)
+        public VisitDto Add(VisitDto visit)
         {
             Log.Debug("POST " + System.Reflection.MethodBase.GetCurrentMethod().Name + "() called.");
-            _visitsService.Add(visit);
+            return _visitsService.Add(visit);
         }
         
         //[CustomAuthorize]

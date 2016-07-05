@@ -84,7 +84,6 @@ app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsServic
         $scope.agendaItemToAdd = {};
         $scope.showAddAgendaItemForm = false;
     };
-$scope.agendaItemsService = agendaItemsService;
     $scope.editAgendaItem = function (agendaItem) {
         console.log('agenda item: ', agendaItem);
         agendaItemsService.selectedAgendaItem = agendaItem;
@@ -99,14 +98,12 @@ $scope.agendaItemsService = agendaItemsService;
                 Materialize.toast('Error when getting data from server.', 6000);
                 console.error('Error when getting related date');
             });
-
-
     };
 
     $scope.saveEditsToAgendaItem = function () {
         agendaItemsService.saveEditsToAgendaItem()
             .then(function (success) {
-                agendaItemsService.updateCurrentAgendaItemInService(success.data)
+                agendaItemsService.updateCurrentAgendaItemInService(success.data);
                 console.log('Success: ', success);
                 $('#edit-agendaItem-modal').closeModal();
                 Materialize.toast('Agenda item updated.', 6000);
@@ -115,5 +112,20 @@ $scope.agendaItemsService = agendaItemsService;
                 Materialize.toast('Error when updating agenda item.', 6000);
             });
     };
-        
+
+    $scope.deleteAgendaItem = function (agendaItem) {
+        console.log('selected agendaItem:', agendaItemsService.selectedAgendaItem);
+        agendaItemsService.deleteAgendaItem(agendaItem)
+            .then(function (success) {
+                agendaItemsService.removeItemFromService(agendaItem.Id);
+                
+                Materialize.toast("The agenda item was deleted and you can't do anything about this.", 6000);
+                $('#agendaItems-modal').closeModal();
+
+            }, function (error) {
+                console.error(error);
+                Materialize.toast('Error! ', 6000);
+            });
+    }
+
 }]);

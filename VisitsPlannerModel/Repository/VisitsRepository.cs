@@ -8,17 +8,35 @@ namespace VisitsPlannerModel.Repository
 {
     public class VisitsRepository : IVisitsRepository
     {
-        public void AddVisit(VisitDto visitDto)
+        public VisitDto AddVisit(VisitDto visitDto)
         {
             using (var context = new HistoryContext(3))
             {
-                Visit newVisit = new Visit();
-                newVisit.Date = visitDto.Date;
-                newVisit.Title = visitDto.Title;
-                newVisit.OrganiserId = visitDto.OrganiserId;
+                Visit visit = new Visit();
+                visit.Date = visitDto.Date;
+                visit.Title = visitDto.Title;
+                visit.OrganiserId = visitDto.OrganiserId;
 
-                context.Visits.Add(newVisit);
+                context.Visits.Add(visit);
                 context.SaveChanges();
+
+                VisitDto returnedVisit = new VisitDto {
+                    Id = visit.Id,
+                    Title = visit.Title,
+                    Date = visit.Date,
+                    Outcome = visit.Outcome,
+                    OrganiserId = visit.OrganiserId,
+                    EmployeeData = new EmployeeShareableDto
+                    {
+                        Id = visit.Employee.Id,
+                        FirstName = visit.Employee.FirstName,
+                        LastName = visit.Employee.LastName,
+                        Email = visit.Employee.Email,
+                        Role = visit.Employee.Role,
+                    }
+                };
+
+                return returnedVisit;
             }
         }
 
@@ -252,33 +270,33 @@ namespace VisitsPlannerModel.Repository
             }
         }
 
-        public VisitDto UpdateVisit(VisitDto visit)
+        public VisitDto UpdateVisit(VisitDto visitDto)
         {
             using (var context = new VPEntities())
             {
-                Visit visitFromDb = context.Visits.FirstOrDefault(v => v.Id == visit.Id);
+                Visit visit = context.Visits.FirstOrDefault(v => v.Id == visitDto.Id);
 
-                visitFromDb.Date = visit.Date;
-                visitFromDb.Title = visit.Title;
-                visitFromDb.OrganiserId = visit.OrganiserId != null ? visit.OrganiserId : visit.EmployeeData.Id;
-                visitFromDb.Outcome = visit.Outcome;
+                visit.Date = visitDto.Date;
+                visit.Title = visitDto.Title;
+                visit.OrganiserId = visitDto.OrganiserId != null ? visitDto.OrganiserId : visit.OrganiserId;
+                visit.Outcome = visitDto.Outcome;
 
                 context.SaveChanges();
 
                 VisitDto returnedVisit = new VisitDto
                 {
-                    Id = visitFromDb.Id,
-                    Title = visitFromDb.Title,
-                    Date = visitFromDb.Date,
-                    OrganiserId = visitFromDb.OrganiserId,
-                    Outcome = visitFromDb.Outcome,
+                    Id = visit.Id,
+                    Title = visit.Title,
+                    Date = visit.Date,
+                    OrganiserId = visit.OrganiserId,
+                    Outcome = visit.Outcome,
                     EmployeeData = new EmployeeShareableDto
                         {
-                            Id = visitFromDb.Employee.Id,
-                            FirstName = visitFromDb.Employee.FirstName,
-                            LastName = visitFromDb.Employee.LastName,
-                            Email = visitFromDb.Employee.Email,
-                            Role = visitFromDb.Employee.Role,
+                            Id = visit.Employee.Id,
+                            FirstName = visit.Employee.FirstName,
+                            LastName = visit.Employee.LastName,
+                            Email = visit.Employee.Email,
+                            Role = visit.Employee.Role,
                         }
                 };
 

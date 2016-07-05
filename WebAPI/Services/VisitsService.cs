@@ -23,12 +23,12 @@ namespace WebAPI.Services
             _repo = new VisitsRepository();
         }
 
-        public void Add(VisitDto visit)
+        public VisitDto Add(VisitDto visit)
         {
 //            Log.Debug(System.Reflection.MethodBase.GetCurrentMethod().Name + 
 //                "() traced. Added visit: " + visit.Title + 
 //                " from " + visit.Date);
-            _repo.AddVisit(visit);
+            return _repo.AddVisit(visit);
         }
 
         public Boolean Delete(int visitId, int organiserId) 

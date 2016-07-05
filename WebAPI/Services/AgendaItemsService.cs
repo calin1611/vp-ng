@@ -26,10 +26,10 @@ namespace WebAPI.Services
             return _repo.AddAgendaItem(agendaItem);
         }
 
-        public void DeleteAgendaItem(int agendaItemId)
+        public bool DeleteAgendaItem(int agendaItemId)
         {
             Log.Debug(System.Reflection.MethodBase.GetCurrentMethod().Name + " traced. Removed agendaItem with ID: " + agendaItemId);
-            _repo.DeleteAgendaItem(agendaItemId);
+            return _repo.DeleteAgendaItem(agendaItemId);
         }
 
         public AgendaItemDto GetAgendaItemById(int id)

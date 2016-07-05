@@ -4,6 +4,8 @@ using VisitsPlannerModel;
 using WebAPI.Services;
 using WebAPI.Helpers;
 using log4net;
+using System.Net.Http;
+using System.Net;
 
 namespace WebAPI.Controllers
 {
@@ -65,6 +67,16 @@ namespace WebAPI.Controllers
         public AgendaItemDto UpdateAgendaItem(AgendaItemDto agendaItemDto) 
         {
             return _agendaItemsService.UpdateAgendaItem(agendaItemDto);
+        }
+
+        [HttpDelete]
+        public HttpResponseMessage DeleteAgendaItem(int id)
+        {
+            if (_agendaItemsService.DeleteAgendaItem(id))
+            {
+                return new HttpResponseMessage(HttpStatusCode.OK);
+            }
+            else return new HttpResponseMessage(HttpStatusCode.InternalServerError);
         }
     }
 }

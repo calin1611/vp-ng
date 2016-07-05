@@ -5,7 +5,7 @@ namespace VisitsPlannerModel.Repository
     public interface IVisitsRepository
     {
         IList<VisitDto> GetVisits();
-        void AddVisit(VisitDto visitDto);
+        VisitDto AddVisit(VisitDto visitDto);
         IList<VisitDto> GetVisitsFromCurrentMonth(int id);
         List<VisitDto> GetVisitsFromCurrentWeek(int id);
         List<VisitDto> VisitsWithAgendaItemsAssigned(int userId);

@@ -53,7 +53,8 @@ app.controller('visitsController', ['$scope', 'visitsService', 'employeesService
         }
     };
 
-    $scope.deleteVisit = function () {
+    $scope.deleteVisit = function (visit) {
+        visitsService.selectedVisit = visit;
         visitsService.deleteVisit()
             .then(function (response) {
                 visitsService.removeItemFromService(visitsService.visits, visitsService.selectedVisit.Id);

@@ -58,7 +58,7 @@ namespace VisitsPlannerModel.Repository
             }
         }
 
-        public void DeleteAgendaItem(int agendaItemId)
+        public bool DeleteAgendaItem(int agendaItemId)
         {
             using (var context = new VPEntities())
             {
@@ -66,6 +66,8 @@ namespace VisitsPlannerModel.Repository
 
                 context.AgendaItems.Remove(agendaItemToDelete);
                 context.SaveChanges();
+
+                return true;
             }
         }
 
