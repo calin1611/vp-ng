@@ -39,14 +39,12 @@
 
                 <td>
                     <input type="text" ng-model="agendaItemToAdd.Title" />
-                    {{agendaItemToAdd.Title}}
                 </td>
                 <td>
                     <input type="datetime-local" ng-model="agendaItemToAdd.Date" />
-                    {{agendaItemToAdd.Date | date}}
                 </td>
                 <td>
-                    <select class="browser-default" ng-model="agendaItemToAdd.LocationId">
+                    <select class="browser-default" ng-model="agendaItemToAdd.Location.Id">
                         <option value="" disabled selected>Location</option>
                         <option ng-repeat="location in vm.relatedData.locations" value="{{location.Id}}">{{location.Name | titlecase}}</option>
                     </select>
@@ -55,7 +53,7 @@
                     <input type="text" ng-model="agendaItemToAdd.Outcome" />
                 </td>
                 <td>
-                    <select class="browser-default" ng-model="agendaItemToAdd.VisitTypeId">
+                    <select class="browser-default" ng-model="agendaItemToAdd.VisitType.Id">
                         <option value="" disabled selected>Type</option>
                         <option ng-repeat="type in vm.relatedData.visitTypes" value="{{type.Id}}">{{type.Type | titlecase}}</option>
                     </select>

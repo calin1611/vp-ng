@@ -20,11 +20,11 @@ namespace VisitsPlannerModel.Repository
                     Title = agendaItemToAdd.Title,
                     Date = agendaItemToAdd.Date,
                     VisitId = agendaItemToAdd.VisitId,
-                    LocationId = agendaItemToAdd.LocationId,
-                    VisitTypeId = agendaItemToAdd.VisitTypeId,
+                    LocationId = agendaItemToAdd.Location.Id,
+                    VisitTypeId = agendaItemToAdd.VisitType.Id,
                     Outcome = agendaItemToAdd.Outcome,
-                    Location= context.Locations.Where(l=>l.Id==agendaItemToAdd.LocationId).FirstOrDefault(),
-                    VisitType = context.VisitTypes.Where(vt => vt.Id == agendaItemToAdd.VisitTypeId).FirstOrDefault()
+                    Location= context.Locations.Where(l=>l.Id==agendaItemToAdd.Location.Id).FirstOrDefault(),
+                    VisitType = context.VisitTypes.Where(vt => vt.Id == agendaItemToAdd.VisitType.Id).FirstOrDefault()
                 };
 
                 context.AgendaItems.Add(newAgendaItem);
@@ -38,8 +38,6 @@ namespace VisitsPlannerModel.Repository
                     Title = newAgendaItem.Title,
                     Date = newAgendaItem.Date,
                     VisitId = newAgendaItem.VisitId,
-                    VisitTypeId = newAgendaItem.VisitTypeId,
-                    LocationId = newAgendaItem.LocationId,
                     Outcome = newAgendaItem.Outcome,
                     Location = new LocationDto()
                     {
@@ -282,8 +280,8 @@ namespace VisitsPlannerModel.Repository
                         Id = agendaItem.VisitType.Id,
                         Type = agendaItem.VisitType.Type
                     },
-                    LocationId = agendaItem.LocationId,
-                    VisitTypeId = agendaItem.VisitTypeId
+                    //LocationId = agendaItem.LocationId,
+                    //VisitTypeId = agendaItem.VisitTypeId
                 };
 
                 return returnedAgendaItem;

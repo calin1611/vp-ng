@@ -29,3 +29,17 @@ app.directive('agendaItemsTable', function () {
         replace: true
     };
 });
+
+// var ngMaterializeSelect = 
+
+// app.directive('ngMaterializeSelect', function ($timeout) {
+//     return {
+//         restrict: 'A',
+//         require: 'select',
+//         link: function (scope, element) {
+//             $timeout(function () {
+//                 $(element).material_select();
+//             });
+//         }     
+//     };
+// });
