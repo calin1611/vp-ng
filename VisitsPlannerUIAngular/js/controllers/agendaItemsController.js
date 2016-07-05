@@ -88,11 +88,9 @@ app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsServic
     // Edits
 
     $scope.editAgendaItem = function (agendaItem) {
-        console.log('agenda item: ', agendaItem);
         agendaItemsService.selectedAgendaItem = agendaItem;
         $scope.vm.agendaItemToEdit = agendaItemsService.selectedAgendaItem;
 
-        console.log('agenda item2: ', agendaItemsService.selectedAgendaItem);
         agendaItemsService.getRelatedData()
             .then(function (success) {
 
@@ -101,11 +99,7 @@ app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsServic
                     visitTypes: success.data.VisitType
                 };
 
-                // $scope.vm.relatedData.locations = success.data.Location;
-                // $scope.vm.relatedData.visitTypes = success.data.VisitType;
-
                 $('#edit-agendaItem-modal').openModal();
-                console.log("Bskja", agendaItemsService.selectedAgendaItem)
             }, function (error) {
                 Materialize.toast('Error when getting data from server.', 6000);
                 console.error('Error when getting related date');
@@ -133,12 +127,10 @@ app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsServic
                 agendaItemsService.removeItemFromService(agendaItem.Id);
                 
                 Materialize.toast("The agenda item was deleted and you can't do anything about this.", 6000);
-                // $('#agendaItems-modal').closeModal();
-
             }, function (error) {
                 console.error(error);
                 Materialize.toast('Error! ', 6000);
             });
-    }
+    };
 
 }]);
