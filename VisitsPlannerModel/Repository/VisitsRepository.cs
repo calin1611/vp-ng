@@ -260,7 +260,7 @@ namespace VisitsPlannerModel.Repository
 
                 visitFromDb.Date = visit.Date;
                 visitFromDb.Title = visit.Title;
-                visitFromDb.OrganiserId = visit.OrganiserId;
+                visitFromDb.OrganiserId = visit.OrganiserId != null ? visit.OrganiserId : visit.EmployeeData.Id;
                 visitFromDb.Outcome = visit.Outcome;
 
                 context.SaveChanges();

@@ -61,5 +61,10 @@ namespace WebAPI.Controllers
             return _agendaItemsService.GetRelatedData();
         }
 
+        [HttpPut]
+        public AgendaItemDto UpdateAgendaItem(AgendaItemDto agendaItemDto) 
+        {
+            return _agendaItemsService.UpdateAgendaItem(agendaItemDto);
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace WebAPI.Services
 
         public AgendaItemDto AddAgendaItem(AgendaItemDto agendaItem)
         {
-            Log.Debug(System.Reflection.MethodBase.GetCurrentMethod().Name + " traced. Added agendaItem with ID: " + agendaItem.Id);
+            //Log.Debug(System.Reflection.MethodBase.GetCurrentMethod().Name + " traced. Added agendaItem with ID: " + agendaItem.Id);
             return _repo.AddAgendaItem(agendaItem);
         }
 
@@ -94,5 +94,10 @@ namespace WebAPI.Services
         }
 
 
+
+        internal AgendaItemDto UpdateAgendaItem(AgendaItemDto agendaItemDto)
+        {
+            return _repo.UpdateAgendaItem(agendaItemDto);
+        }
     }
 }

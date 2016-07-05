@@ -1,13 +1,15 @@
 app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsService', 'visitsService', function ($scope, $filter, agendaItemsService, visitsService) {
 
+    $('select').material_select();
+
     $scope.vm = {
         showAddAgendaItemForm: false,
         agendaItemToAdd: {},
-        relatedData: {}
+        relatedData: {},
+        agendaItemToEdit: {}
     };
+
     $scope.visitsService = visitsService;
-    // Add Agenda Item
-    $('select').material_select();
 
     $scope.$on('ajaxLoading', function (event, data) {
         $scope.ajaxLoading = data.loading;
@@ -82,4 +84,36 @@ app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsServic
         $scope.agendaItemToAdd = {};
         $scope.showAddAgendaItemForm = false;
     };
+$scope.agendaItemsService = agendaItemsService;
+    $scope.editAgendaItem = function (agendaItem) {
+        console.log('agenda item: ', agendaItem);
+        agendaItemsService.selectedAgendaItem = agendaItem;
+        $scope.vm.agendaItemToEdit = agendaItemsService.selectedAgendaItem;
+
+        agendaItemsService.getRelatedData()
+            .then(function (success) {
+                $scope.vm.relatedData.locations = success.data.Location;
+                $scope.vm.relatedData.visitTypes = success.data.VisitType;
+            $('#edit-agendaItem-modal').openModal();
+            }, function (error) {
+                Materialize.toast('Error when getting data from server.', 6000);
+                console.error('Error when getting related date');
+            });
+
+
+    };
+
+    $scope.saveEditsToAgendaItem = function () {
+        agendaItemsService.saveEditsToAgendaItem()
+            .then(function (success) {
+                agendaItemsService.updateCurrentAgendaItemInService(success.data)
+                console.log('Success: ', success);
+                $('#edit-agendaItem-modal').closeModal();
+                Materialize.toast('Agenda item updated.', 6000);
+            }, function (error) {
+                console.error(error);
+                Materialize.toast('Error when updating agenda item.', 6000);
+            });
+    };
+        
 }]);
