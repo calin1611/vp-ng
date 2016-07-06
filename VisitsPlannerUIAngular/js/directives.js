@@ -30,7 +30,7 @@ app.directive('agendaItemsTable', function () {
     };
 });
 
-app.directive('ngOpenAgendaItemsModal', function ($timeout, modalDisplayService) {
+app.directive('ngOpenAgendaItemsModal', function ($timeout) {
     return {
         restrict: 'A',
         link: function (scope, element) {
@@ -41,7 +41,7 @@ app.directive('ngOpenAgendaItemsModal', function ($timeout, modalDisplayService)
     };
 });
 
-app.directive('ngOpenEditVisitModal', function ($timeout, modalDisplayService) {
+app.directive('ngOpenEditVisitModal', function ($timeout, visitsService) {
     return {
         restrict: 'A',
         link: function (scope, element) {

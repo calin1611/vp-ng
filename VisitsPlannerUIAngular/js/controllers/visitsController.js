@@ -2,6 +2,11 @@ app.controller('visitsController', ['$scope', 'visitsService', 'employeesService
 
     $scope.visits = visitsService.visits;
     $scope.visitsLoaded = false;
+    $scope.vm = {
+        temporaryData: {
+            employeeId: ''
+        }
+    };
 
     $scope.$on('ajaxLoading', function (event, data) {
         $scope.ajaxLoading = data.loading;
@@ -10,6 +15,7 @@ app.controller('visitsController', ['$scope', 'visitsService', 'employeesService
     $scope.getVisitsFromCurrentMonth = function () {
         getVisits('month');
     };
+
     $scope.getVisitsFromCurrentWeek = function () {
         getVisits('week');
     };
@@ -25,21 +31,17 @@ app.controller('visitsController', ['$scope', 'visitsService', 'employeesService
         visitsService.visits = response.data;
     };
 
-    $scope.openAgendaItemsModal = function (visit) {
-        visitsService.selectedVisit = visit;
+    var onError = function (response) {
+        console.error("Angular XHR error: ");
+        console.log(response);
+        Materialize.toast('There was a problem when connecting to the server.', 20000);
     };
-    
+
     $scope.showDeleteButton = function (visit) {
         if (visit.EmployeeData.Email === localStorage.getItem('email')) {
             return true;
         }
         return false;
-    };
-
-    var onError = function (response) {
-        console.error("Angular XHR error: ");
-        console.log(response);
-        Materialize.toast('There was a problem when connecting to the server.', 20000);
     };
 
     $scope.showOutcome = function (outcome) {
@@ -50,6 +52,10 @@ app.controller('visitsController', ['$scope', 'visitsService', 'employeesService
         }
     };
 
+    $scope.openAgendaItemsModal = function (visit) {
+        visitsService.selectedVisit = visit;
+    };
+    
     $scope.deleteVisit = function (visit) {
         visitsService.selectedVisit = visit;
         visitsService.deleteVisit()
@@ -80,11 +86,12 @@ app.controller('visitsController', ['$scope', 'visitsService', 'employeesService
     };
 
     $scope.saveEditsToVisit = function () {
+        visitsService.selectedVisit.EmployeeData.Id = $scope.vm.temporaryData.employeeId;
+
         visitsService.saveEditsToVisit()
         .then(function (success) {
             visitsService.updateCurrentVisitInService(success.data);
             Materialize.toast("Visit updated.", 6000);
-            
         }, function (error) {
             Materialize.toast("Visit updated.", 6000);
         });

@@ -93,7 +93,7 @@ namespace VisitsPlannerModel.Repository
                         Id = visit.Id,
                         Title = visit.Title,
                         Date = visit.Date,
-                        OrganiserId = visit.OrganiserId,
+                        //OrganiserId = visit.OrganiserId,
                         Outcome = visit.Outcome,
                         EmployeeData = new EmployeeShareableDto
                         {
@@ -278,7 +278,7 @@ namespace VisitsPlannerModel.Repository
 
                 visit.Date = visitDto.Date;
                 visit.Title = visitDto.Title;
-                visit.OrganiserId = visitDto.OrganiserId != null ? visitDto.OrganiserId : visit.OrganiserId;
+                visit.OrganiserId = visitDto.EmployeeData.Id != 0 ? visitDto.EmployeeData.Id : visit.OrganiserId;
                 visit.Outcome = visitDto.Outcome;
 
                 context.SaveChanges();
