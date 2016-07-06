@@ -26,9 +26,6 @@ app.controller('visitsController', ['$scope', 'visitsService', 'employeesService
     };
 
     $scope.openAgendaItemsModal = function (visit) {
-        // $('.modal-trigger').leanModal();        
-        $('#agendaItems-modal').openModal();
-        
         visitsService.selectedVisit = visit;
     };
     
@@ -80,7 +77,6 @@ app.controller('visitsController', ['$scope', 'visitsService', 'employeesService
         visitsService.selectedVisit = visit;
         $scope.visitToEdit = visitsService.selectedVisit;
         getEmployees();
-        $('#edit-visit-modal').openModal();
     };
 
     $scope.saveEditsToVisit = function () {

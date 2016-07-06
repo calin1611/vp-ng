@@ -1,4 +1,4 @@
-app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsService', 'visitsService', function ($scope, $filter, agendaItemsService, visitsService) {
+app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsService', 'visitsService', 'modalDisplayService', function ($scope, $filter, agendaItemsService, visitsService, modalDisplayService) {
 
     $('select').material_select();
 
@@ -93,6 +93,8 @@ app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsServic
 
         agendaItemsService.getRelatedData()
             .then(function (success) {
+        // $scope.vm.defaultLocation = $scope.vm.agendaItemToEdit.Location.Id;
+        // agendaItemsService.selectedAgendaItem.Location.Id = $scope.vm.defaultLocation;
 
                 $scope.vm.relatedData = {
                     locations: success.data.Location,
@@ -132,5 +134,7 @@ app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsServic
                 Materialize.toast('Error! ', 6000);
             });
     };
+
+    $scope.showModal = modalDisplayService.showAgendaItemsModal;
 
 }]);

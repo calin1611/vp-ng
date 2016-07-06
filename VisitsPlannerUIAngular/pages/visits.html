@@ -105,16 +105,8 @@
 
     </div>
 
+
     <!-- Edit AgendaItem Modal Structure-->
-    <!--<div id="edit-agendaItem-modal" class="modal modal-fixed-footer">
-        <div class="modal-content">
-        <h4>Modal Header</h4>
-        <p>A bunch of text</p>
-        </div>
-        <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
-        </div>
-    </div>-->
     <div id="edit-agendaItem-modal" class="modal modal-fixed-footer">
         <div class="modal-content">
             <h4>Edit Agenda Item</h4>
@@ -137,6 +129,7 @@
                     <input ng-model="vm.agendaItemToEdit.Outcome">
 
                     <p>Type</p>
+                    <!--<select class="browser-default" ng-model="vm.test2">-->
                     <select class="browser-default" ng-model="vm.agendaItemToEdit.VisitType.Id">
                         <option value="" disabled selected>Choose the type of the agenda item</option>
                         <option ng-repeat="visitType in vm.relatedData.visitTypes" value="{{visitType.Id}}">{{visitType.Type}}</option>

@@ -26,10 +26,10 @@
                 <i ng-click="showOutcome(visit.Outcome)" ng-show="visit.Outcome !== null" class="material-icons pointer">subject</i>
             </td>
             <td>
-                <i ng-click="openAgendaItemsModal(visit)" class="material-icons modal-trigger pointer" href="#agendaItems-modal">launch</i>
+                <i ng-click="openAgendaItemsModal(visit)" ng-open-agenda-items-modal class="material-icons pointer">launch</i>
             </td>
             <td>
-                <i ng-click="editVisit(visit)" class="material-icons modal-trigger pointer left" href="#edit-visit-modal">mode_edit</i>
+                <i ng-click="editVisit(visit)" ng-open-edit-visit-modal class="material-icons pointer left" >mode_edit</i>
                 <i ng-click="deleteVisit(visit)" class="material-icons pointer" ng-show="showDeleteButton(visit)">delete</i>
             </td>
         </tr>

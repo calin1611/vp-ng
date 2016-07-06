@@ -30,16 +30,33 @@ app.directive('agendaItemsTable', function () {
     };
 });
 
-// var ngMaterializeSelect = 
+app.directive('ngOpenAgendaItemsModal', function ($timeout, modalDisplayService) {
+    return {
+        restrict: 'A',
+        link: function (scope, element) {
+            $(element).on('click', function () {
+                $('#agendaItems-modal').openModal();
+            });
+        }     
+    };
+});
 
-// app.directive('ngMaterializeSelect', function ($timeout) {
-//     return {
-//         restrict: 'A',
-//         require: 'select',
-//         link: function (scope, element) {
-//             $timeout(function () {
-//                 $(element).material_select();
-//             });
-//         }     
-//     };
-// });
+app.directive('ngOpenEditVisitModal', function ($timeout, modalDisplayService) {
+    return {
+        restrict: 'A',
+        link: function (scope, element) {
+            $timeout(function () {
+                $(element).on('click', function () {
+                    $('#edit-visit-modal').openModal();
+
+                    setTimeout(function(){ 
+                        var modalBackground = $('.lean-overlay');
+                        if (modalBackground.length > 1) {
+                            modalBackground.last().trigger('click');
+                        }
+                    }, 50);
+                });
+            });
+        }
+    };
+});

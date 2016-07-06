@@ -1,6 +1,6 @@
 app.controller('addVisitController', ['$scope', 'visitsService', 'employeesService', function ($scope, visitsService, employeesService) {
 
-    $('.modal-trigger').leanModal();
+    // $('.modal-trigger').leanModal(); //xx
     // $('select').material_select();
 
     $scope.visit = {

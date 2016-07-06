@@ -1,5 +1,5 @@
 app.controller('loginController', ['$scope', 'loginService', '$window', '$rootScope',function ($scope, loginService, $window, $rootScope) {
-    $('.modal-trigger').leanModal();
+    // $('.modal-trigger').leanModal(); //xx
 
     (function() {
         if(loginService.checkIfLoggedIn().logged === true) {
