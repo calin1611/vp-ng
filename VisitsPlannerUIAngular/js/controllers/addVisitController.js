@@ -1,12 +1,5 @@
 app.controller('addVisitController', ['$scope', 'visitsService', 'employeesService', function ($scope, visitsService, employeesService) {
 
-    $scope.visit = {
-        title: '',
-        date: '',
-        employeeId: ''
-    };
-
-
     $scope.vm = {
         visit: {
             Title: '',
@@ -35,7 +28,7 @@ app.controller('addVisitController', ['$scope', 'visitsService', 'employeesServi
             }
         };
 
-        visitsService.addVisit(visitObject)
+        visitsService.addVisit($scope.vm.visit)
             .then(function successCallback(data, status, headers, config) {
                 Materialize.toast('Visit added', 5000);
             },

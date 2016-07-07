@@ -28,14 +28,6 @@ namespace VisitsPlannerModel.Repository
                     Date = visit.Date,
                     Outcome = visit.Outcome,
                     OrganiserId = visit.OrganiserId,
-                    //EmployeeData = new EmployeeShareableDto
-                    //{
-                    //    Id = visit.Employee.Id,
-                    //    FirstName = visit.Employee.FirstName,
-                    //    LastName = visit.Employee.LastName,
-                    //    Email = visit.Employee.Email,
-                    //    Role = visit.Employee.Role,
-                    //}
                     EmployeeData = new EmployeeShareableDto
                     {
                         Id = employee.Id,

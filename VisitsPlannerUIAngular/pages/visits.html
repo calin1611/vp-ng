@@ -203,13 +203,13 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <label for="visit_title">Title</label>
-                        <input ng-model="visit.title" id="visit_title" type="text" class="validate">
+                        <input ng-model="vm.visit.title" id="visit_title" type="text" class="validate">
                     </div>
                     <div class="input-field col s12">
                         <!-- <input ng-model="date" id="datepicker" type="date" class="datepicker">
                         <label for="datepicker">Date</label> -->
                         <div class="input-field col s12">
-                            <input ng-model="visit.date" type="datetime-local" class="validate">
+                            <input ng-model="vm.visit.Date" type="datetime-local" class="validate">
                         </div>
                         <!-- <label for="inputCreated">Input date</label>
                         <input input-date
@@ -246,7 +246,7 @@
                     <div class="input-field col s12">
 
                         <p>Responsable employee</p>
-                        <select class="browser-default" ng-model="visit.employeeId">
+                        <select class="browser-default" ng-model="vm.visit.EmployeeData.Id">
                             <option value="" disabled selected>Choose the employee</option>
                             <option ng-repeat="employee in vm.employees" value="{{employee.Id}}">{{employee.FirstName}} {{employee.LastName}}</option>
                         </select>
