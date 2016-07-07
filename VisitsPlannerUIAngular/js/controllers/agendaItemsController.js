@@ -1,4 +1,4 @@
-app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsService', 'visitsService', 'modalDisplayService', function ($scope, $filter, agendaItemsService, visitsService, modalDisplayService) {
+app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsService', 'visitsService', function ($scope, $filter, agendaItemsService, visitsService) {
 
     $('select').material_select();
 
@@ -6,7 +6,8 @@ app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsServic
         showAddAgendaItemForm: false,
         agendaItemToAdd: {},
         relatedData: {},
-        agendaItemToEdit: {}
+        agendaItemToEdit: {},
+        temporaryData:{}
     };
 
     $scope.visitsService = visitsService;
@@ -16,10 +17,9 @@ app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsServic
     });
 
     $scope.$watch("visitsService.selectedVisit", function (newVal, oldVal) {
-        if (newVal !== oldVal) {
+        if (newVal.Id !== undefined && newVal !== oldVal) {
             $scope.selectedVisit = newVal;
             getAgendaItemsForVisit($scope.selectedVisit.Id);
-
         }
     });
 
@@ -38,13 +38,16 @@ app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsServic
 
         $scope.hideAgendaItemsTable = true;
         checkIfAgendaItemsExist();
-
-        $('#agendaItems-modal').openModal();
     };
 
     var onError = function (response) {
         console.error("Angular XHR error: ", response);
         Materialize.toast('There was a problem when connecting to the server.', 20000);
+    };
+
+    var resetTemporaryData = function () {
+        $scope.vm.temporaryData = {};
+        agendaItemsService.selectedAgendaItem = {};
     };
 
     $scope.showOutcome = function (outcome) {
@@ -93,15 +96,11 @@ app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsServic
 
         agendaItemsService.getRelatedData()
             .then(function (success) {
-        // $scope.vm.defaultLocation = $scope.vm.agendaItemToEdit.Location.Id;
-        // agendaItemsService.selectedAgendaItem.Location.Id = $scope.vm.defaultLocation;
-
                 $scope.vm.relatedData = {
                     locations: success.data.Location,
                     visitTypes: success.data.VisitType
                 };
 
-                $('#edit-agendaItem-modal').openModal();
             }, function (error) {
                 Materialize.toast('Error when getting data from server.', 6000);
                 console.error('Error when getting related date');
@@ -109,12 +108,18 @@ app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsServic
     };
 
     $scope.saveEditsToAgendaItem = function () {
+        agendaItemsService.selectedAgendaItem.Location.Id = $scope.vm.temporaryData.locationId;
+        agendaItemsService.selectedAgendaItem.VisitType.Id = $scope.vm.temporaryData.visitTypeId;
+
+
         agendaItemsService.saveEditsToAgendaItem()
             .then(function (success) {
                 agendaItemsService.updateCurrentAgendaItemInService(success.data);
                 console.log('Success: ', success);
                 $('#edit-agendaItem-modal').closeModal();
                 Materialize.toast('Agenda item updated.', 6000);
+
+                resetTemporaryData();
             }, function (error) {
                 console.error(error);
                 Materialize.toast('Error when updating agenda item.', 6000);
@@ -134,7 +139,5 @@ app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsServic
                 Materialize.toast('Error! ', 6000);
             });
     };
-
-    $scope.showModal = modalDisplayService.showAgendaItemsModal;
 
 }]);

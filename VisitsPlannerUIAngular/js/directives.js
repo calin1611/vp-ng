@@ -1,19 +1,3 @@
-// app.directive('navBar', function () {
-//     return {
-//         restrict: 'E',
-//         templateUrl: 'directives/navbar.html',
-//         replace: true
-//     };
-// });
-//
-// app.directive('loginModal', function () {
-//     return {
-//         restrict: 'E',
-//         templateUrl: 'directives/loginModal.html',
-//         replace: true
-//     };
-// });
-
 app.directive('visitsTable', function () {
     return {
         restrict: 'E',
@@ -54,9 +38,21 @@ app.directive('ngOpenEditVisitModal', function ($timeout, visitsService) {
                         if (modalBackground.length > 1) {
                             modalBackground.last().trigger('click');
                         }
-                    }, 50);
+                    }, 60);
                 });
             });
         }
+    };
+});
+
+
+app.directive('ngOpenEditAgendaItemsModal', function ($timeout) {
+    return {
+        restrict: 'A',
+        link: function (scope, element) {
+            $(element).on('click', function () {
+                $('#edit-agendaItem-modal').openModal();
+            });
+        }     
     };
 });

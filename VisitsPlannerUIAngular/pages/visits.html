@@ -120,7 +120,7 @@
                     <input ng-model="vm.agendaItemToEdit.Date">
 
                     <p>Location</p>
-                    <select class="browser-default" ng-model="vm.agendaItemToEdit.Location.Id">
+                    <select class="browser-default" ng-model="vm.temporaryData.locationId">
                         <option value="" disabled selected>Choose the location</option>
                         <option ng-repeat="location in vm.relatedData.locations" value="{{location.Id}}">{{location.Name}} ({{location.Id}})</option>
                     </select>
@@ -130,7 +130,7 @@
 
                     <p>Type</p>
                     <!--<select class="browser-default" ng-model="vm.test2">-->
-                    <select class="browser-default" ng-model="vm.agendaItemToEdit.VisitType.Id">
+                    <select class="browser-default" ng-model="vm.temporaryData.visitTypeId">
                         <option value="" disabled selected>Choose the type of the agenda item</option>
                         <option ng-repeat="visitType in vm.relatedData.visitTypes" value="{{visitType.Id}}">{{visitType.Type}}</option>
                     </select>

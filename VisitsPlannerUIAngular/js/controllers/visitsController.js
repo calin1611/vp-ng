@@ -32,10 +32,15 @@ app.controller('visitsController', ['$scope', 'visitsService', 'employeesService
     };
 
     var onError = function (response) {
-        console.error("Angular XHR error: ");
-        console.log(response);
+        console.error("Angular XHR error: ", response);
         Materialize.toast('There was a problem when connecting to the server.', 20000);
     };
+
+    var resetTemporaryData = function () {
+        $scope.vm.temporaryData = {};
+        visitsService.selectedVisit = {};
+    };
+    
 
     $scope.showDeleteButton = function (visit) {
         if (visit.EmployeeData.Email === localStorage.getItem('email')) {
@@ -92,6 +97,8 @@ app.controller('visitsController', ['$scope', 'visitsService', 'employeesService
         .then(function (success) {
             visitsService.updateCurrentVisitInService(success.data);
             Materialize.toast("Visit updated.", 6000);
+
+            resetTemporaryData();
         }, function (error) {
             Materialize.toast("Visit updated.", 6000);
         });

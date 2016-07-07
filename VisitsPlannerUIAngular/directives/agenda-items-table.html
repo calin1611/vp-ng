@@ -29,7 +29,7 @@
                 {{agendaItem.VisitType.Type | titlecase}}
             </td>
             <td>
-                <i ng-click="editAgendaItem(agendaItem)" class="material-icons modal-trigger pointer left" href="#edit-agendaItem-modal">mode_edit</i>
+                <i ng-click="editAgendaItem(agendaItem)" ng-open-edit-agenda-items-modal class="material-icons modal-trigger pointer left" href="#edit-agendaItem-modal">mode_edit</i>
                 <i ng-click="deleteAgendaItem(agendaItem)" class="material-icons pointer">delete</i>  <!--ng-show="showDeleteButton()"-->
             </td>
         </tr>

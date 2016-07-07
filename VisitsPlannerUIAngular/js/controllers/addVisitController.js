@@ -16,7 +16,7 @@ app.controller('addVisitController', ['$scope', 'visitsService', 'employeesServi
             $scope.employees = response.data;
         },
         function(error){
-            console.error(error);
+            console.error('Dammit! Error: ', error);
         });
 
     $scope.addVisit = function () {
