@@ -72,7 +72,7 @@
 
     <div id="agendaItems-modal" class="modal modal-fixed-footer">
         <div class="modal-content">
-            <h4>Agenda Items for <span class="visit-title">{{selectedVisit.Title}}</span></h4>
+            <h4>Agenda Items for <span class="visit-title">{{vm.selectedVisit.Title}}</span></h4>
             <div class="row">
                 <div class="container">
 
@@ -248,7 +248,7 @@
                         <p>Responsable employee</p>
                         <select class="browser-default" ng-model="visit.employeeId">
                             <option value="" disabled selected>Choose the employee</option>
-                            <option ng-repeat="employee in employees" value="{{employee.Id}}">{{employee.FirstName}} {{employee.LastName}}</option>
+                            <option ng-repeat="employee in vm.employees" value="{{employee.Id}}">{{employee.FirstName}} {{employee.LastName}}</option>
                         </select>
 
                     </div>
@@ -265,7 +265,7 @@
 
 
 <!-- Add-Visit button -->
-<div class="fixed-action-btn modal-trigger" href="#add-visit-modal" style="bottom: 45px; right: 24px;">
+<div ng-open-add-visit-modal class="fixed-action-btn modal-trigger" href="#add-visit-modal" style="bottom: 45px; right: 24px;">
     <a class="btn-floating btn-large red">
         <i class="large material-icons">add</i>
     </a>

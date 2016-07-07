@@ -15,24 +15,34 @@ namespace VisitsPlannerModel.Repository
                 Visit visit = new Visit();
                 visit.Date = visitDto.Date;
                 visit.Title = visitDto.Title;
-                visit.OrganiserId = visitDto.OrganiserId;
+                visit.OrganiserId = visitDto.EmployeeData.Id;
 
                 context.Visits.Add(visit);
                 context.SaveChanges();
 
+                Employee employee = context.Employees.FirstOrDefault(e => e.Id == visitDto.EmployeeData.Id);
+                
                 VisitDto returnedVisit = new VisitDto {
                     Id = visit.Id,
                     Title = visit.Title,
                     Date = visit.Date,
                     Outcome = visit.Outcome,
                     OrganiserId = visit.OrganiserId,
+                    //EmployeeData = new EmployeeShareableDto
+                    //{
+                    //    Id = visit.Employee.Id,
+                    //    FirstName = visit.Employee.FirstName,
+                    //    LastName = visit.Employee.LastName,
+                    //    Email = visit.Employee.Email,
+                    //    Role = visit.Employee.Role,
+                    //}
                     EmployeeData = new EmployeeShareableDto
                     {
-                        Id = visit.Employee.Id,
-                        FirstName = visit.Employee.FirstName,
-                        LastName = visit.Employee.LastName,
-                        Email = visit.Employee.Email,
-                        Role = visit.Employee.Role,
+                        Id = employee.Id,
+                        FirstName = employee.FirstName,
+                        LastName = employee.LastName,
+                        Email = employee.Email,
+                        Role = employee.Role,
                     }
                 };
 

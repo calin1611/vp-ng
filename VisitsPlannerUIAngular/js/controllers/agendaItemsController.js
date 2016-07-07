@@ -7,7 +7,8 @@ app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsServic
         agendaItemToAdd: {},
         relatedData: {},
         agendaItemToEdit: {},
-        temporaryData:{}
+        temporaryData:{},
+        selectedVisit: {}
     };
 
     $scope.visitsService = visitsService;
@@ -18,8 +19,8 @@ app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsServic
 
     $scope.$watch("visitsService.selectedVisit", function (newVal, oldVal) {
         if (newVal.Id !== undefined && newVal !== oldVal) {
-            $scope.selectedVisit = newVal;
-            getAgendaItemsForVisit($scope.selectedVisit.Id);
+            $scope.vm.selectedVisit = newVal;
+            getAgendaItemsForVisit($scope.vm.selectedVisit.Id);
         }
     });
 

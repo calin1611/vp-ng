@@ -1,19 +1,26 @@
 app.controller('addVisitController', ['$scope', 'visitsService', 'employeesService', function ($scope, visitsService, employeesService) {
 
-    // $('.modal-trigger').leanModal(); //xx
-    // $('select').material_select();
-
     $scope.visit = {
         title: '',
         date: '',
         employeeId: ''
     };
 
-    $scope.employees = '';
+
+    $scope.vm = {
+        visit: {
+            Title: '',
+            Date: '',
+            EmployeeData: {
+                Id: ''
+            }
+        },
+        employees: {}
+    };
 
     employeesService.getEmployees()
         .then(function(response){
-            $scope.employees = response.data;
+            $scope.vm.employees = response.data;
         },
         function(error){
             console.error('Dammit! Error: ', error);
@@ -23,7 +30,9 @@ app.controller('addVisitController', ['$scope', 'visitsService', 'employeesServi
         var visitObject = {
             Title: $scope.visit.title,
             Date: $scope.visit.date,
-            OrganiserId: $scope.visit.employeeId
+            EmployeeData: { 
+                Id: $scope.visit.employeeId 
+            }
         };
 
         visitsService.addVisit(visitObject)

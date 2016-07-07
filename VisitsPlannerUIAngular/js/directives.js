@@ -45,13 +45,24 @@ app.directive('ngOpenEditVisitModal', function ($timeout, visitsService) {
     };
 });
 
-
 app.directive('ngOpenEditAgendaItemsModal', function ($timeout) {
     return {
         restrict: 'A',
         link: function (scope, element) {
             $(element).on('click', function () {
                 $('#edit-agendaItem-modal').openModal();
+            });
+        }     
+    };
+});
+
+app.directive('ngOpenAddVisitModal', function ($timeout) {
+    return {
+        restrict: 'A',
+        link: function (scope, element) {
+            $(element).on('click', function () {
+                $('#add-visit-modal').openModal();
+                $('select').material_select();
             });
         }     
     };

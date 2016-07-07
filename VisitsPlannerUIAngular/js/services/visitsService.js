@@ -4,7 +4,7 @@ app.service('visitsService', ['$http','$rootScope', function ($http, $rootScope)
 
     this.visits = [];
 
-    this.addVisit = function (visitObject) {
+    this.addVisit = function (visitObject) { //de schimbat sintaxa functiei $http
         return $http({
             method: 'POST',
             url: baseUrl + 'visits/add',

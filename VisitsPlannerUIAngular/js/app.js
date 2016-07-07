@@ -1,5 +1,6 @@
-var app = angular.module('visitsPlanner', ['ngRoute', 'ngResource', 'ngSanitize', 'ui.materialize']);
 var baseUrl = "http://localhost:59557/api/";
+
+var app = angular.module('visitsPlanner', ['ngRoute', 'ngResource', 'ngSanitize', 'ui.materialize']);
 
 app.config(function ($routeProvider, $httpProvider) {
     $routeProvider
