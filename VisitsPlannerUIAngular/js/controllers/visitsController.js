@@ -1,11 +1,13 @@
 app.controller('visitsController', ['$scope', 'visitsService', 'employeesService', function ($scope, visitsService, employeesService) {
 
-    $scope.visits = visitsService.visits;
-    $scope.visitsLoaded = false;
+    // $scope.visits = visitsService.visits;
     $scope.vm = {
+        visits: visitsService.visits,
+        visitsLoaded: false,
         temporaryData: {
             employeeId: ''
-        }
+        },
+        employees:{}
     };
 
     $scope.$on('ajaxLoading', function (event, data) {
@@ -26,9 +28,9 @@ app.controller('visitsController', ['$scope', 'visitsService', 'employeesService
     };
 
     var onVisits = function (response) {
-        $scope.visitsLoaded = true;
-        $scope.visits = response.data;
-        visitsService.visits = response.data;
+        $scope.vm.visitsLoaded = true;
+        $scope.vm.visits = response.data;
+        visitsService.visits = $scope.vm.visits;
     };
 
     var onError = function (response) {
@@ -78,7 +80,7 @@ app.controller('visitsController', ['$scope', 'visitsService', 'employeesService
     var getEmployees = function () {
         employeesService.getEmployees()
         .then(function (success) {
-            $scope.employees = success.data;
+            $scope.vm.employees = success.data;
         }, function (error) {
             console.error("Error when trying to get employees");
         });

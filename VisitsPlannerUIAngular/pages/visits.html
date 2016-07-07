@@ -63,7 +63,7 @@
 
     <!-- AngularJS visits table -->
     <div class="row">
-        <visits-table ng-show="visitsLoaded"></visits-table>
+        <visits-table ng-show="vm.visitsLoaded"></visits-table>
     </div>
 </div>
 
@@ -173,7 +173,7 @@
                 <p>Responsable employee</p>
                 <select class="browser-default" ng-model="vm.temporaryData.employeeId">
                         <option value="" disabled selected>Choose the employee</option>
-                        <option ng-repeat="employee in employees" value="{{employee.Id}}">{{employee.FirstName}} {{employee.LastName}}</option>
+                        <option ng-repeat="employee in vm.employees" value="{{employee.Id}}">{{employee.FirstName}} {{employee.LastName}}</option>
                     </select>
 
 
