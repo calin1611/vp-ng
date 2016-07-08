@@ -19,6 +19,8 @@ app.directive('ngOpenAgendaItemsModal', function ($timeout) {
         restrict: 'A',
         link: function (scope, element) {
             $(element).on('click', function () {
+                    // $('select').material_select(); //possibly useless, possibly not
+
                 $('#agendaItems-modal').openModal();
             });
         }     

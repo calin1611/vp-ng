@@ -1,7 +1,5 @@
 app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsService', 'visitsService', function ($scope, $filter, agendaItemsService, visitsService) {
 
-    $('select').material_select();
-
     $scope.vm = {
         agendaItems: {},
         showAddAgendaItemForm: false,
