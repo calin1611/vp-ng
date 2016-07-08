@@ -11,7 +11,7 @@
     </thead>
 
     <tbody>
-        <tr ng-repeat="agendaItem in agendaItems">
+        <tr ng-repeat="agendaItem in vm.agendaItems">
             <td>
                 {{agendaItem.Title}}
             </td>
@@ -22,8 +22,8 @@
                 {{agendaItem.Location.Name}}
             </td>
             <td>
-                <i ng-show="agendaItem.Outcome === null" ng-click="showOutcome(agendaItem.Outcome)" class="material-icons pointer" data-position="right" data-delay="50">lock_outline</i>
-                <i ng-show="agendaItem.Outcome !== null" ng-click="showOutcome(agendaItem.Outcome)" class="material-icons pointer" data-position="right" data-delay="50">subject</i>
+                <!--<i ng-show="agendaItem.Outcome === null" ng-click="showOutcome(agendaItem.Outcome)" class="material-icons pointer" data-position="right" data-delay="50">lock_outline</i>-->
+                <i ng-click="showOutcome(agendaItem.Outcome)" class="material-icons pointer" data-position="right" data-delay="50">subject</i>
             </td>
             <td>
                 {{agendaItem.VisitType.Type | titlecase}}
@@ -38,22 +38,22 @@
             <form>
 
                 <td>
-                    <input type="text" ng-model="agendaItemToAdd.Title" />
+                    <input type="text" ng-model="vm.agendaItemToAdd.Title" />
                 </td>
                 <td>
-                    <input type="datetime-local" ng-model="agendaItemToAdd.Date" />
+                    <input type="datetime-local" ng-model="vm.agendaItemToAdd.Date" />
                 </td>
                 <td>
-                    <select class="browser-default" ng-model="agendaItemToAdd.Location.Id">
+                    <select class="browser-default" ng-model="vm.agendaItemToAdd.Location.Id">
                         <option value="" disabled selected>Location</option>
                         <option ng-repeat="location in vm.relatedData.locations" value="{{location.Id}}">{{location.Name | titlecase}}</option>
                     </select>
                 </td>
                 <td>
-                    <input type="text" ng-model="agendaItemToAdd.Outcome" />
+                    <input type="text" ng-model="vm.agendaItemToAdd.Outcome" />
                 </td>
                 <td>
-                    <select class="browser-default" ng-model="agendaItemToAdd.VisitType.Id">
+                    <select class="browser-default" ng-model="vm.agendaItemToAdd.VisitType.Id">
                         <option value="" disabled selected>Type</option>
                         <option ng-repeat="type in vm.relatedData.visitTypes" value="{{type.Id}}">{{type.Type | titlecase}}</option>
                     </select>

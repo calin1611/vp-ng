@@ -55,7 +55,7 @@ namespace WebAPI.Services
                         Title = visit.Title,
                         Outcome = visit.Outcome,
                         EmployeeData = visit.EmployeeData,
-                        OrganiserId = visit.OrganiserId,
+                        //OrganiserId = visit.OrganiserId,
                         AgendaItems = agendaItemsForVisit
                     });
                 }
@@ -67,7 +67,7 @@ namespace WebAPI.Services
                         Date = visit.Date,
                         Title = visit.Title,
                         EmployeeData = visit.EmployeeData,
-                        OrganiserId = visit.OrganiserId
+                        //OrganiserId = visit.OrganiserId
                     });
                 }
             }

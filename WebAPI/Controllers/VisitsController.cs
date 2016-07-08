@@ -64,8 +64,7 @@ namespace WebAPI.Controllers
             using (var performanceMonitor = new PerformanceMonitorService(System.Reflection.MethodBase.GetCurrentMethod()))
             {
                 Log.Debug("GET " + System.Reflection.MethodBase.GetCurrentMethod().Name + "() called.");
-                var visitsFromCurrentMonth = _visitsService.CurrentMonth(UserId);
-                return visitsFromCurrentMonth;
+                return _visitsService.CurrentMonth(UserId);
             }
         }
 
@@ -76,8 +75,7 @@ namespace WebAPI.Controllers
             using (var performanceMonitor = new PerformanceMonitorService(System.Reflection.MethodBase.GetCurrentMethod()))
             {
                 Log.Debug("GET " + System.Reflection.MethodBase.GetCurrentMethod().Name + "() called.");
-                var visitsFromCurrentWeek = _visitsService.CurrentWeek(UserId);
-                return visitsFromCurrentWeek;
+                return _visitsService.CurrentWeek(UserId);
             }
         }
 

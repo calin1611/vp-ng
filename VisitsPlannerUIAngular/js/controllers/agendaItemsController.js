@@ -3,6 +3,7 @@ app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsServic
     $('select').material_select();
 
     $scope.vm = {
+        agendaItems: {},
         showAddAgendaItemForm: false,
         agendaItemToAdd: {},
         relatedData: {},
@@ -30,12 +31,12 @@ app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsServic
     };
 
     var checkIfAgendaItemsExist = function () {
-        $scope.hideAgendaItemsTable = $scope.agendaItems.length === 0;
+        $scope.hideAgendaItemsTable = $scope.vm.agendaItems.length === 0;
     };
 
     var onAgendaItems = function (response) {
         agendaItemsService.agendaItems = response.data;
-        $scope.agendaItems = agendaItemsService.agendaItems;
+        $scope.vm.agendaItems = agendaItemsService.agendaItems;
 
         $scope.hideAgendaItemsTable = true;
         checkIfAgendaItemsExist();
@@ -53,7 +54,7 @@ app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsServic
 
     $scope.showOutcome = function (outcome) {
         if (outcome === null) {
-            Materialize.toast("You don't have the required permissions", 6000);
+            Materialize.toast("This agenda item has no outcome.", 6000);
         } else {
             Materialize.toast(outcome, 6000);
         }
@@ -71,8 +72,8 @@ app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsServic
     };
 
     $scope.saveAgendaItem = function () {
-        $scope.agendaItemToAdd.VisitId = visitsService.selectedVisit.Id;
-        agendaItemsService.agendaItemToAdd = $scope.agendaItemToAdd;
+        $scope.vm.agendaItemToAdd.VisitId = visitsService.selectedVisit.Id;
+        agendaItemsService.agendaItemToAdd = $scope.vm.agendaItemToAdd;
 
         agendaItemsService.saveAgendaItem()
             .then(function (response) {
@@ -85,7 +86,7 @@ app.controller('agendaItemsController', ['$scope', '$filter', 'agendaItemsServic
 
     $scope.cancelAddAgendaItem = function () {
         checkIfAgendaItemsExist();
-        $scope.agendaItemToAdd = {};
+        $scope.vm.agendaItemToAdd = {};
         $scope.showAddAgendaItemForm = false;
     };
     

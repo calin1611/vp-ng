@@ -22,8 +22,8 @@
                 <a href="mailto:{{visit.EmployeeData.Email}}">{{visit.EmployeeData.FirstName + ' ' + visit.EmployeeData.LastName}}</a>
             </td>
             <td>
-                <i ng-click="showOutcome(visit.Outcome)" ng-show="visit.Outcome === null" class="material-icons pointer">lock_outline</i>
-                <i ng-click="showOutcome(visit.Outcome)" ng-show="visit.Outcome !== null" class="material-icons pointer">subject</i>
+                <i ng-click="showOutcome(visit)" ng-show="visit.showOutcomeIcon" class="material-icons pointer">subject</i>
+                <i ng-click="showOutcome(visit)" ng-show="!visit.showOutcomeIcon" class="material-icons pointer">lock_outline</i>
             </td>
             <td>
                 <i ng-click="openAgendaItemsModal(visit)" ng-open-agenda-items-modal class="material-icons pointer">launch</i>

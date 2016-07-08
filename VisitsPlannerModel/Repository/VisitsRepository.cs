@@ -95,7 +95,7 @@ namespace VisitsPlannerModel.Repository
                         Id = visit.Id,
                         Title = visit.Title,
                         Date = visit.Date,
-                        //OrganiserId = visit.OrganiserId,
+                        OrganiserId = visit.OrganiserId,
                         Outcome = visit.Outcome,
                         EmployeeData = new EmployeeShareableDto
                         {

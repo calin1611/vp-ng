@@ -22,6 +22,17 @@ app.controller('visitsController', ['$scope', 'visitsService', 'employeesService
         getVisits('week');
     };
 
+    var setOutcomeIcon = function () {
+        for (var i = 0; i < $scope.vm.visits.length; i++) {
+            if ($scope.vm.visits[i].EmployeeData.Email === localStorage.getItem('email')) {
+                $scope.vm.visits[i].showOutcomeIcon = true;
+            }
+            else {
+                $scope.vm.visits[i].showOutcomeIcon = false;
+            }
+        }
+    };
+    
     var getVisits = function (unitOfTime) { // unitOfTime: 'week' or 'month'
         visitsService.getVisits(unitOfTime)
         .then(onVisits, onError);
@@ -30,6 +41,7 @@ app.controller('visitsController', ['$scope', 'visitsService', 'employeesService
     var onVisits = function (response) {
         $scope.vm.visitsLoaded = true;
         $scope.vm.visits = response.data;
+        setOutcomeIcon();
         visitsService.visits = $scope.vm.visits;
     };
 
@@ -51,11 +63,15 @@ app.controller('visitsController', ['$scope', 'visitsService', 'employeesService
         return false;
     };
 
-    $scope.showOutcome = function (outcome) {
-        if (outcome === null) {
+    $scope.showOutcome = function (visit) {
+        if (visit.EmployeeData.Email === localStorage.getItem('email')) {
+            if (visit.Outcome === null) 
+                Materialize.toast("No outcome.", 6000);
+            else
+                Materialize.toast(visit.Outcome, 6000);
+        }
+        else {
             Materialize.toast("You don't have the required permissions", 6000);
-        } else {
-            Materialize.toast(outcome, 6000);
         }
     };
 
