@@ -66,7 +66,7 @@ app.controller('visitsController', ['$scope', 'visitsService', 'employeesService
     $scope.showOutcome = function (visit) {
         if (visit.EmployeeData.Email === localStorage.getItem('email')) {
             if (visit.Outcome === null) 
-                Materialize.toast("No outcome.", 6000);
+                Materialize.toast("This visit has no outcome.", 6000);
             else
                 Materialize.toast(visit.Outcome, 6000);
         }
