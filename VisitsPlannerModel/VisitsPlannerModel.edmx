@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="VisitsPlannerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="VisitsPlannerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AgendaItems">
           <Key>
             <PropertyRef Name="Id" />
@@ -15,11 +15,11 @@
           <Property Name="LocationId" Type="int" Nullable="false" />
           <Property Name="Date" Type="datetime" />
           <Property Name="VisitTypeId" Type="int" Nullable="false" />
-          <Property Name="Outcome" Type="nvarchar" MaxLength="500" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="Outcome" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="AgendaItemsNotifications">
           <Key>
@@ -110,11 +110,11 @@
           <Property Name="Title" Type="nvarchar" MaxLength="50" />
           <Property Name="Date" Type="datetime" />
           <Property Name="OrganiserId" Type="int" />
-          <Property Name="Outcome" Type="nvarchar" MaxLength="500" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="Outcome" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="VisitsCustomers">
           <Key>
@@ -320,8 +320,7 @@
             <End Role="Visits" EntitySet="Visits" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="VisitsPlannerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -636,13 +635,13 @@
           <EntitySetMapping Name="AgendaItems">
             <EntityTypeMapping TypeName="VisitsPlannerModel.AgendaItem">
               <MappingFragment StoreEntitySet="AgendaItems">
+                <ScalarProperty Name="Outcome" ColumnName="Outcome" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="VisitId" ColumnName="VisitId" />
                 <ScalarProperty Name="LocationId" ColumnName="LocationId" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="VisitTypeId" ColumnName="VisitTypeId" />
-                <ScalarProperty Name="Outcome" ColumnName="Outcome" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
@@ -739,11 +738,11 @@
           <EntitySetMapping Name="Visits">
             <EntityTypeMapping TypeName="VisitsPlannerModel.Visit">
               <MappingFragment StoreEntitySet="Visits">
+                <ScalarProperty Name="Outcome" ColumnName="Outcome" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="OrganiserId" ColumnName="OrganiserId" />
-                <ScalarProperty Name="Outcome" ColumnName="Outcome" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />

@@ -26,3 +26,17 @@ C:\VisitsPlanner\vp-ng\VisitsPlannerModel\bin\Debug\log4net.xml
 C:\VisitsPlanner\vp-ng\VisitsPlannerModel\obj\Debug\VisitsPlannerModel.csprojResolveAssemblyReference.cache
 C:\VisitsPlanner\vp-ng\VisitsPlannerModel\obj\Debug\VisitsPlannerModel.dll
 C:\VisitsPlanner\vp-ng\VisitsPlannerModel\obj\Debug\VisitsPlannerModel.pdb
+C:\Projects\vp-ng\VisitsPlannerModel\bin\Debug\VisitsPlannerModel.dll.config
+C:\Projects\vp-ng\VisitsPlannerModel\bin\Debug\VisitsPlannerModel.dll
+C:\Projects\vp-ng\VisitsPlannerModel\bin\Debug\VisitsPlannerModel.pdb
+C:\Projects\vp-ng\VisitsPlannerModel\bin\Debug\AutoMapper.dll
+C:\Projects\vp-ng\VisitsPlannerModel\bin\Debug\EntityFramework.dll
+C:\Projects\vp-ng\VisitsPlannerModel\bin\Debug\EntityFramework.SqlServer.dll
+C:\Projects\vp-ng\VisitsPlannerModel\bin\Debug\log4net.dll
+C:\Projects\vp-ng\VisitsPlannerModel\bin\Debug\AutoMapper.xml
+C:\Projects\vp-ng\VisitsPlannerModel\bin\Debug\EntityFramework.xml
+C:\Projects\vp-ng\VisitsPlannerModel\bin\Debug\EntityFramework.SqlServer.xml
+C:\Projects\vp-ng\VisitsPlannerModel\bin\Debug\log4net.xml
+C:\Projects\vp-ng\VisitsPlannerModel\obj\Debug\VisitsPlannerModel.csprojResolveAssemblyReference.cache
+C:\Projects\vp-ng\VisitsPlannerModel\obj\Debug\VisitsPlannerModel.dll
+C:\Projects\vp-ng\VisitsPlannerModel\obj\Debug\VisitsPlannerModel.pdb

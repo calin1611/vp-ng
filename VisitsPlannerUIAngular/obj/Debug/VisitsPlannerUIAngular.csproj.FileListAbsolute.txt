@@ -10,3 +10,9 @@ C:\VisitsPlanner\vp-ng\VisitsPlannerUIAngular\bin\VisitsPlannerUIAngular.pdb
 C:\VisitsPlanner\vp-ng\VisitsPlannerUIAngular\obj\Debug\VisitsPlannerUIAngular.csprojResolveAssemblyReference.cache
 C:\VisitsPlanner\vp-ng\VisitsPlannerUIAngular\obj\Debug\VisitsPlannerUIAngular.dll
 C:\VisitsPlanner\vp-ng\VisitsPlannerUIAngular\obj\Debug\VisitsPlannerUIAngular.pdb
+C:\Projects\vp-ng\VisitsPlannerUIAngular\bin\VisitsPlannerUIAngular.dll.config
+C:\Projects\vp-ng\VisitsPlannerUIAngular\bin\VisitsPlannerUIAngular.dll
+C:\Projects\vp-ng\VisitsPlannerUIAngular\bin\VisitsPlannerUIAngular.pdb
+C:\Projects\vp-ng\VisitsPlannerUIAngular\obj\Debug\VisitsPlannerUIAngular.csprojResolveAssemblyReference.cache
+C:\Projects\vp-ng\VisitsPlannerUIAngular\obj\Debug\VisitsPlannerUIAngular.dll
+C:\Projects\vp-ng\VisitsPlannerUIAngular\obj\Debug\VisitsPlannerUIAngular.pdb

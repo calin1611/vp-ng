@@ -4,13 +4,13 @@
     <EntitySetMapping Name="AgendaItems">
       <EntityTypeMapping TypeName="VisitsPlannerModel.AgendaItem">
         <MappingFragment StoreEntitySet="AgendaItems">
+          <ScalarProperty Name="Outcome" ColumnName="Outcome" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="VisitId" ColumnName="VisitId" />
           <ScalarProperty Name="LocationId" ColumnName="LocationId" />
           <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="VisitTypeId" ColumnName="VisitTypeId" />
-          <ScalarProperty Name="Outcome" ColumnName="Outcome" />
           <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
           <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
           <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
@@ -107,11 +107,11 @@
     <EntitySetMapping Name="Visits">
       <EntityTypeMapping TypeName="VisitsPlannerModel.Visit">
         <MappingFragment StoreEntitySet="Visits">
+          <ScalarProperty Name="Outcome" ColumnName="Outcome" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="OrganiserId" ColumnName="OrganiserId" />
-          <ScalarProperty Name="Outcome" ColumnName="Outcome" />
           <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
           <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
           <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
