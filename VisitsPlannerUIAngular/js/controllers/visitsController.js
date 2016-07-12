@@ -121,4 +121,9 @@ app.controller('visitsController', ['$scope', 'visitsService', 'employeesService
             Materialize.toast("Visit updated.", 6000);
         });
     };
+
+    $scope.sortableOptions = {
+        containment: '#visits-table',
+        containerPositioning: 'relative'
+    };
 }]);

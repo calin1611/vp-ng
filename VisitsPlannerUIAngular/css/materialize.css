@@ -3032,6 +3032,14 @@ td, th {
   border-radius: 2px;
 }
 
+.ie td, th {
+  padding: 15px 5px;
+  display: table-cell;
+  text-align: left;
+  vertical-align: middle;
+  border-radius: 0px;
+}
+
 @media only screen and (max-width: 992px) {
   table.responsive-table {
     width: 100%;

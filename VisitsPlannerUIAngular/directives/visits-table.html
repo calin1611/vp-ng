@@ -10,9 +10,9 @@
         </tr>
     </thead>
 
-    <tbody>
-        <tr ng-repeat="visit in vm.visits">
-            <td>
+    <tbody ng-model="vm.visits" as-sortable>
+        <tr ng-repeat="visit in vm.visits" as-sortable-item >
+            <td >
                 {{visit.Title}}
             </td>
             <td>
@@ -31,6 +31,7 @@
             <td>
                 <i ng-click="editVisit(visit)" ng-open-edit-visit-modal class="material-icons pointer left" >mode_edit</i>
                 <i ng-click="deleteVisit(visit)" class="material-icons pointer" ng-show="showDeleteButton(visit)">delete</i>
+                <i class="material-icons right" as-sortable-item-handle>reorder</i>
             </td>
         </tr>
     </tbody>
